@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>pod · GitBook</title>
+        <title>cheatsheet · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -60,6 +60,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="01.port-forwarding.html" />
     
     
 
@@ -187,9 +189,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.3.1" data-path="00.pod.html">
+        <li class="chapter " data-level="1.3.1" data-path="../chapter1/00.pod.html">
             
-                <a href="00.pod.html">
+                <a href="../chapter1/00.pod.html">
             
                     
                     pod
@@ -219,9 +221,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../chapter10/00.cheatsheet.html">
+        <li class="chapter active" data-level="1.4.1" data-path="00.cheatsheet.html">
             
-                <a href="../chapter10/00.cheatsheet.html">
+                <a href="00.cheatsheet.html">
             
                     
                     cheatsheet
@@ -232,9 +234,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../chapter10/01.port-forwarding.html">
+        <li class="chapter " data-level="1.4.2" data-path="01.port-forwarding.html">
             
-                <a href="../chapter10/01.port-forwarding.html">
+                <a href="01.port-forwarding.html">
             
                     
                     端口转发
@@ -280,7 +282,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >pod</a>
+        <a href=".." >cheatsheet</a>
     </h1>
 </div>
 
@@ -295,8 +297,31 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pod">pod</h1>
-
+                                <h1 id="cheatsheet">cheatsheet</h1>
+<h2 id="&#x4E00;&#x4E9B;&#x547D;&#x4EE4;&#x7684;&#x7B80;&#x5199;">&#x4E00;&#x4E9B;&#x547D;&#x4EE4;&#x7684;&#x7B80;&#x5199;</h2>
+<ul>
+<li><p><code>--namespace=xxx</code>&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x4E3A;<code>-n xxx</code></p>
+</li>
+<li><p><code>--all-namespaces</code>&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x4E3A;<code>-A</code></p>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/kk7b2.png" alt="image-20200306191716985"></p>
+</li>
+</ul>
+<p><br></p>
+<h2 id="context&#x76F8;&#x5173;">context&#x76F8;&#x5173;</h2>
+<p>context&#x547D;&#x4EE4;&#x9002;&#x5408;&#x4E8E;<code>&#x8981;&#x7BA1;&#x7406;&#x591A;&#x4E2A;k8s&#x96C6;&#x7FA4;</code>&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x5728;&#x4E0D;&#x540C;&#x96C6;&#x7FA4;&#x4E4B;&#x524D;&#x6765;&#x56DE;&#x5207;&#x6362;&#x3002;</p>
+<p><br></p>
+<p><strong>&#x83B7;&#x53D6;&#x6240;&#x6709;context</strong>&#xFF1A;</p>
+<pre class="language-"><code>kubectl config get-contexts                          # display list of contexts
+</code></pre><p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/ngg7l.png" alt="image-20200306192817150"></p>
+<p><br></p>
+<p><strong>&#x83B7;&#x53D6;&#x5F53;&#x524D;context&#xFF1A;</strong></p>
+<pre class="language-"><code>kubectl config current-context                       # display the current-context
+</code></pre><p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/b5rmw.png" alt="image-20200306192910090"></p>
+<p><br></p>
+<p><strong>&#x5207;&#x6362;context&#xFF1A;</strong></p>
+<pre class="language-"><code>kubectl config use-context my-cluster-name           # set the default context to my-cluster-name
+</code></pre>
                                 
                                 </section>
                             
@@ -324,6 +349,10 @@
             
                 
                 
+                <a href="01.port-forwarding.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 端口转发">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
             
         
     </div>
@@ -331,7 +360,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"pod","level":"1.3.1","depth":2,"next":{"title":"[常用技巧]","level":"1.4","depth":1,"ref":"","articles":[{"title":"cheatsheet","level":"1.4.1","depth":2,"path":"chapter10/00.cheatsheet.md","ref":"chapter10/00.cheatsheet.md","articles":[]},{"title":"端口转发","level":"1.4.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]}]},"previous":{"title":"[k8s基本组件]","level":"1.3","depth":1,"ref":"","articles":[{"title":"pod","level":"1.3.1","depth":2,"path":"chapter1/00.pod.md","ref":"chapter1/00.pod.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","prism","-highlight"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"flow":"typescript"}},"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/00.pod.md","mtime":"2020-03-05T02:05:56.328Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-06T11:29:56.584Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"cheatsheet","level":"1.4.1","depth":2,"next":{"title":"端口转发","level":"1.4.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]},"previous":{"title":"[常用技巧]","level":"1.4","depth":1,"ref":"","articles":[{"title":"cheatsheet","level":"1.4.1","depth":2,"path":"chapter10/00.cheatsheet.md","ref":"chapter10/00.cheatsheet.md","articles":[]},{"title":"端口转发","level":"1.4.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","prism","-highlight"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"flow":"typescript"}},"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter10/00.cheatsheet.md","mtime":"2020-03-06T11:29:44.350Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-06T11:29:56.584Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
