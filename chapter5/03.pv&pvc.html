@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-okaidia.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
                 
             
@@ -369,6 +365,150 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="pvpvc">pv/pvc</h1>
+<!-- toc --><div id="toc" class="toc">
+
+<ul>
+<li><a href="#&#x80CC;&#x666F;">&#x80CC;&#x666F;</a></li>
+<li><a href="#overall-working-steps">Overall Working Steps</a><ul>
+<li><a href="#persistent-volume">Persistent Volume</a></li>
+<li><a href="#persistentvolumeclaim">PersistentVolumeClaim</a></li>
+</ul>
+</li>
+<li><a href="#&#x5B9E;&#x8DF5;">&#x5B9E;&#x8DF5;</a></li>
+<li><a href="#&#x4EC0;&#x4E48;&#x662F;reclaim-policy">&#x4EC0;&#x4E48;&#x662F;reclaim policy</a><ul>
+<li><a href="#retain">Retain</a></li>
+<li><a href="#delete">Delete</a></li>
+</ul>
+</li>
+</ul>
+
+</div><!-- tocstop -->
+<h2 id="&#x80CC;&#x666F;">&#x80CC;&#x666F;</h2>
+<p>&#x4E0A;&#x4E00;&#x8282;&#x4ECB;&#x7ECD;&#x4E86;<code>hostpath Volume</code>&#xFF0C;&#x8FD9;&#x79CD;&#x5F62;&#x5F0F;&#x7BA1;&#x7406;&#x5B58;&#x50A8;&#x6709;&#x4E00;&#x4E2A;&#x7F3A;&#x70B9;&#xFF1A;&#x7528;&#x6237;&#x9700;&#x8981;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x5B58;&#x50A8;&#x4F4D;&#x7F6E;&#x3002;&#x800C;&#x4E14;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x591A;worker&#x8282;&#x70B9;&#x7684;&#x573A;&#x666F;&#x3002;</p>
+<p>&#x672C;&#x8282;&#x5C06;&#x4ECB;&#x7ECD;<code>PersistentVolume</code>&#xFF0C;<strong>&#x5B83;&#x5C06;&#x7BA1;&#x7406;&#x5B58;&#x50A8;&#x7684;&#x5DE5;&#x4F5C;&#x62BD;&#x8C61;&#x5316;&#xFF0C;&#x63D0;&#x4F9B;&#x7ED9;&#x7528;&#x6237;&#x4E00;&#x4E2A;API&#x8FDB;&#x884C;&#x8C03;&#x7528;&#x3002;</strong></p>
+<p><br></p>
+<ul>
+<li><p><code>PersistentVolume</code> (PV) &#x662F;k8s&#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x7531;&#x7BA1;&#x7406;&#x5458;&#x4E8B;&#x5148;&#x521B;&#x5EFA;&#x597D;&#xFF0C;&#x6216;&#x8005;&#x4F7F;&#x7528;<code>storage class</code>&#x6765;&#x63D0;&#x4F9B;&#x3002;&#x5B83;&#x76F8;&#x5F53;&#x4E8E;<code>volume plugin</code>, &#x4F46;&#x662F;&#x6709;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;</p>
+</li>
+<li><p>&#x7528;&#x6237;&#x5728;&#x4F7F;&#x7528;&#x5B58;&#x50A8;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x58F0;&#x660E; <code>PersistentVolumeClaim</code> (PVC) </p>
+</li>
+<li><p><strong><code>PersistentVolume</code> (PV) &#x53EF;&#x5C06;&#x5176;&#x7C7B;&#x6BD4;&#x4E3A;node&#xFF1B; <code>PersistentVolumeClaim</code> (PVC) &#x53EF;&#x4EE5;&#x5C06;&#x7C7B;&#x6BD4;&#x4E3A;pod&#xFF1B;pod&#x6D88;&#x8017;node&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x800C;pvc&#x6D88;&#x8017;pv&#x7684;&#x8D44;&#x6E90;</strong></p>
+</li>
+<li><p><code>StorageClass</code>&#x4E3A;&#x7BA1;&#x7406;&#x5458;&#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x4F8B;&#x5982;<code>ebs&#x3001;efs&#x2026;&#x2026;</code>&#x3002;&#x5982;&#x6B64;&#x4E00;&#x6765;&#xFF0C;&#x5C31;&#x80FD;&#x63D0;&#x4F9B;&#x591A;&#x79CD;&#x5F62;&#x5F0F;&#x7684;pv&#xFF0C;&#x800C;&#x7528;&#x6237;&#x5728;&#x4F7F;&#x7528;&#x65F6;&#x662F;&#x65E0;&#x611F;&#x77E5;&#x7684;&#x3002;</p>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="overall-working-steps">Overall Working Steps</h2>
+<ol>
+<li>Storage Administrato takes care of creating PV.</li>
+<li>Developer can raise a &quot;Claim&quot; ( I want a specific type of PV ).</li>
+<li>Reference that claim within the <code>PodSpec</code> file.</li>
+</ol>
+<p><br></p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-26-001209.png" alt="image-20200126081208511"></p>
+<p><br></p>
+<h3 id="persistent-volume">Persistent Volume</h3>
+<p>A PV is a piece of storage in the cluster that has been provisioned by an adminstrator or dynamically provisioned using Storage Classes.</p>
+<p><br></p>
+<ul>
+<li>Every Volume which is created can be of different type.</li>
+<li>This can be taken care by the Storage Administrator/Ops Team.</li>
+</ul>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-26-002611.png" alt="image-20200126082611541"></p>
+<p><br></p>
+<h3 id="persistentvolumeclaim">PersistentVolumeClaim</h3>
+<p>A <code>PVC</code> is a request for the storage by a user.</p>
+<p>Within the claim, user need to specify the size of the volume along with access mode.</p>
+<p><br></p>
+<p>For example:</p>
+<p>Developer: I want a volume of size 10GB which is has speed of Fast for my pod.</p>
+<p><br><br></p>
+<h2 id="&#x5B9E;&#x8DF5;">&#x5B9E;&#x8DF5;</h2>
+<p><br></p>
+<p>&#x521B;&#x5EFA;<code>persistentVolume</code>:</p>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: block-pv
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /tmp/data
+</code></pre>
+<p>The access modes are:</p>
+<ul>
+<li>ReadWriteOnce &#x2013; the volume can be mounted as read-write by a single node</li>
+<li>ReadOnlyMany &#x2013; the volume can be mounted read-only by many nodes</li>
+<li>ReadWriteMany &#x2013; the volume can be mounted as read-write by many nodes</li>
+</ul>
+<p><br></p>
+<p>&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>kubectl get pv</code>&#x67E5;&#x770B;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/o973n.png" alt="image-20200311203436274"></p>
+<p><br></p>
+<p>&#x521B;&#x5EFA;<code>PersistentVolumeClaim</code>:</p>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+</code></pre>
+<p><br></p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/ux6u8.png" alt="image-20200311203949640"></p>
+<p><br></p>
+<p>&#x521B;&#x5EFA;pod&#xFF0C;&#x4F7F;&#x7528;pvc&#xFF1A;</p>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+      - mountPath: &quot;/data&quot;
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: pvc
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>kubectl describe pvc xxx</code>&#x6765;&#x67E5;&#x770B;pvc&#x662F;&#x5426;&#x88AB;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x5F53;&#x672A;&#x521B;&#x5EFA;&#x6B64;pod&#x65F6;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/11a62.png" alt="image-20200311204133592"></p>
+<p>&#x521B;&#x5EFA;pod&#x540E;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/8uar5.png" alt="image-20200311204155547"></p>
+<p><br></p>
+<p>&#x5728;pod&#x7684;<code>/data</code>&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/zd9d3.png" alt="image-20200126095937656"></p>
+<p>&#x5728;ec2&#x7684;<code>/tmp/data</code>&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x53D1;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/8bp02.png" alt="image-20200126095924598"></p>
+<p><br></p>
+<p><br></p>
+<h2 id="&#x4EC0;&#x4E48;&#x662F;reclaim-policy">&#x4EC0;&#x4E48;&#x662F;reclaim policy</h2>
+<p>When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource. The reclaim policy for a <code>PersistentVolume</code> tells the cluster what to do with the volume after it has been released of its claim. Currently, volumes can either be Retained, Recycled, or Deleted.</p>
+<h4 id="retain">Retain</h4>
+<p>The <code>Retain</code> reclaim policy allows for manual reclamation of the resource. When the <code>PersistentVolumeClaim</code> is deleted, the <code>PersistentVolume</code> still exists and the volume is considered &#x201C;released&#x201D;. But it is not yet available for another claim because the previous claimant&#x2019;s data remains on the volume. An administrator can manually reclaim the volume with the following steps.</p>
+<ol>
+<li>Delete the <code>PersistentVolume</code>. The associated storage asset in external infrastructure (such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume) still exists after the PV is deleted.</li>
+<li>Manually clean up the data on the associated storage asset accordingly.</li>
+<li>Manually delete the associated storage asset, or if you want to reuse the same storage asset, create a new <code>PersistentVolume</code> with the storage asset definition.</li>
+</ol>
+<h4 id="delete">Delete</h4>
+<p>For volume plugins that support the <code>Delete</code> reclaim policy, deletion removes both the <code>PersistentVolume</code> object from Kubernetes, as well as the associated storage asset in the external infrastructure, such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume. Volumes that were dynamically provisioned inherit the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaim-policy" target="_blank">reclaim policy of their <code>StorageClass</code></a>, which defaults to <code>Delete</code>. The administrator should configure the <code>StorageClass</code> according to users&#x2019; expectations; otherwise, the PV must be edited or patched after it is created. See <a href="https://kubernetes.io/docs/tasks/administer-cluster/change-pv-reclaim-policy/" target="_blank">Change the Reclaim Policy of a PersistentVolume</a>.</p>
+<p><br></p>
+<blockquote>
+<p>  &#x5982;&#x679C;&#x662F;reclaim poliy&#x662F;delete&#xFF0C;&#x5728;&#x5220;&#x9664;pvc&#x540E;&#xFF0C;&#x5BF9;&#x5E94;pv&#x4E5F;&#x4F1A;&#x81EA;&#x52A8;&#x5220;&#x9664;&#xFF1B;&#x5982;&#x679C;pv&#x57FA;&#x4E8E;aws ebs&#x521B;&#x5EFA;&#x7684;&#xFF0C;&#x5219;&#x5BF9;&#x5E94;&#x7684;ebs&#x4E5F;&#x4F1A;&#x88AB;&#x5220;&#x9664;&#x3002;</p>
+</blockquote>
 
                                 
                                 </section>
@@ -408,7 +548,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"pv/pvc","level":"1.4.4","depth":2,"next":{"title":"[常用技巧]","level":"1.5","depth":1,"ref":"","articles":[{"title":"cheatsheet","level":"1.5.1","depth":2,"path":"chapter10/00.cheatsheet.md","ref":"chapter10/00.cheatsheet.md","articles":[]},{"title":"端口转发","level":"1.5.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]}]},"previous":{"title":"Using Host Volume","level":"1.4.3","depth":2,"path":"chapter5/02.host-volumes.md","ref":"chapter5/02.host-volumes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","prism","-highlight"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"flow":"typescript"}},"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/03.pv&pvc.md","mtime":"2020-03-10T09:53:55.891Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-10T10:58:57.580Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"pv/pvc","level":"1.4.4","depth":2,"next":{"title":"[常用技巧]","level":"1.5","depth":1,"ref":"","articles":[{"title":"cheatsheet","level":"1.5.1","depth":2,"path":"chapter10/00.cheatsheet.md","ref":"chapter10/00.cheatsheet.md","articles":[]},{"title":"端口转发","level":"1.5.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]}]},"previous":{"title":"Using Host Volume","level":"1.4.3","depth":2,"path":"chapter5/02.host-volumes.md","ref":"chapter5/02.host-volumes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/03.pv&pvc.md","mtime":"2020-03-12T07:44:15.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-12T07:44:20.977Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

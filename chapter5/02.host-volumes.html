@@ -21,10 +21,6 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-okaidia.css">
-                
-            
-                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
                 
             
@@ -379,46 +375,46 @@
 <p>&#x8FD9;&#x4E00;&#x8282;&#x5148;&#x4ECB;&#x7ECD;&#x6700;&#x7B80;&#x5355;&#x7684;volume&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;worker node&#x672C;&#x8EAB;&#x7684;&#x5B58;&#x50A8;&#x3002;&#x53C8;&#x53EB;<code>hostpath</code></p>
 <h4 id="&#x4F7F;&#x7528;hostpath">&#x4F7F;&#x7528;hostpath</h4>
 <p>hostpath&#x7684;pod&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre class="language-"><code class="lang-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>pd
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
-    <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
-    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /mydata
-      <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>volume
-  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>volume
-    <span class="token key atrule">hostPath</span><span class="token punctuation">:</span>
-      <span class="token comment"># directory location on host</span>
-      <span class="token key atrule">path</span><span class="token punctuation">:</span> /tmp
-      <span class="token comment"># this field is optional</span>
-      <span class="token key atrule">type</span><span class="token punctuation">:</span> Directory
+<pre><code class="lang-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+    - mountPath: /mydata
+      name: test-volume
+  volumes:
+  - name: test-volume
+    hostPath:
+      # directory location on host
+      path: /tmp
+      # this field is optional
+      type: Directory
 </code></pre>
 <p>&#x8FD9;&#x6837;&#x5C06;&#x5BBF;&#x4E3B;&#x673A;&#x7684;<code>/tmp</code>&#x76EE;&#x5F55;&#x6302;&#x8F7D;&#x5230;&#x5BB9;&#x5668;&#x7684;<code>/mydata</code>&#x76EE;&#x5F55;&#x3002;</p>
 <p><br></p>
 <p>&#x767B;&#x5F55;&#x5230;pod&#x7684;bash&#xFF0C;&#x5728;&#x5BB9;&#x5668;&#x4E2D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
-<pre class="language-"><code class="lang-bash"><span class="token punctuation">[</span>@BDSZYF000132741:pod<span class="token punctuation">]</span>$ kubectl <span class="token builtin class-name">exec</span> -it test-pd <span class="token function">bash</span>
-root@test-pd:/<span class="token comment"># ls</span>
+<pre><code class="lang-bash">[@BDSZYF000132741:pod]$ kubectl exec -it test-pd bash
+root@test-pd:/# ls
 bin boot dev etc home lib lib64 media mnt mydata opt proc root run sbin srv sys tmp usr var
-root@test-pd:/<span class="token comment"># cd /mydata/</span>
-root@test-pd:/mydata<span class="token comment"># ls</span>
+root@test-pd:/# cd /mydata/
+root@test-pd:/mydata# ls
 systemd-private-4e4ecf17541e49ad9046bc0c82614925-chronyd.service-nDFeL0
-root@test-pd:/mydata<span class="token comment"># echo &quot;Hi&quot;&gt;&gt;hello.txt</span>
+root@test-pd:/mydata# echo &quot;Hi&quot;&gt;&gt;hello.txt
 </code></pre>
 <p>&#x767B;&#x5F55;&#x5230;pod&#x6240;&#x5728;&#x7684;worker&#x8282;&#x70B9;&#xFF0C;&#x5728;&#x5BBF;&#x4E3B;&#x673A;&#x7684;<code>/tmp</code>&#x76EE;&#x5F55;&#x4E0B;&#x4E5F;&#x80FD;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
-<pre class="language-"><code class="lang-bash"><span class="token punctuation">[</span>root@ip-192-168-175-56 /<span class="token punctuation">]</span><span class="token comment"># cd tmp</span>
-<span class="token punctuation">[</span>root@ip-192-168-175-56 tmp<span class="token punctuation">]</span><span class="token comment"># ls</span>
+<pre><code class="lang-bash">[root@ip-192-168-175-56 /]# cd tmp
+[root@ip-192-168-175-56 tmp]# ls
 systemd-private-4e4ecf17541e49ad9046bc0c82614925-chronyd.service-nDFeL0
-<span class="token punctuation">[</span>root@ip-192-168-175-56 tmp<span class="token punctuation">]</span><span class="token comment"># ls</span>
+[root@ip-192-168-175-56 tmp]# ls
 systemd-private-4e4ecf17541e49ad9046bc0c82614925-chronyd.service-nDFeL0
 
-<span class="token punctuation">[</span>root@ip-192-168-175-56 tmp<span class="token punctuation">]</span><span class="token comment"># ls</span>
+[root@ip-192-168-175-56 tmp]# ls
 hello.txt systemd-private-4e4ecf17541e49ad9046bc0c82614925-chronyd.service-nDFeL0
-<span class="token punctuation">[</span>root@ip-192-168-175-56 tmp<span class="token punctuation">]</span><span class="token comment"># cat hello.txt</span>
+[root@ip-192-168-175-56 tmp]# cat hello.txt
 Hi
 </code></pre>
 <p><br></p>
@@ -470,7 +466,7 @@ Hi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using Host Volume","level":"1.4.3","depth":2,"next":{"title":"pv/pvc","level":"1.4.4","depth":2,"path":"chapter5/03.pv&pvc.md","ref":"chapter5/03.pv&pvc.md","articles":[]},"previous":{"title":"CSI - Container Storage Interface","level":"1.4.2","depth":2,"path":"chapter5/01.container-storage-interface.md","ref":"chapter5/01.container-storage-interface.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","prism","-highlight"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"flow":"typescript"}},"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/02.host-volumes.md","mtime":"2020-03-10T10:57:50.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-10T10:58:57.580Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using Host Volume","level":"1.4.3","depth":2,"next":{"title":"pv/pvc","level":"1.4.4","depth":2,"path":"chapter5/03.pv&pvc.md","ref":"chapter5/03.pv&pvc.md","articles":[]},"previous":{"title":"CSI - Container Storage Interface","level":"1.4.2","depth":2,"path":"chapter5/01.container-storage-interface.md","ref":"chapter5/01.container-storage-interface.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/02.host-volumes.md","mtime":"2020-03-10T10:57:50.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-12T07:44:20.977Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
