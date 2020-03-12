@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>cheatsheet · GitBook</title>
+        <title>Dynamic Provisioning · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01.port-forwarding.html" />
     
+    <link rel="prev" href="03.pv&pvc.html" />
     
 
     </head>
@@ -217,9 +217,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../chapter5/00.docker-storage-drivers.html">
+        <li class="chapter " data-level="1.4.1" data-path="00.docker-storage-drivers.html">
             
-                <a href="../chapter5/00.docker-storage-drivers.html">
+                <a href="00.docker-storage-drivers.html">
             
                     
                     docker storage drivers
@@ -230,9 +230,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../chapter5/01.container-storage-interface.html">
+        <li class="chapter " data-level="1.4.2" data-path="01.container-storage-interface.html">
             
-                <a href="../chapter5/01.container-storage-interface.html">
+                <a href="01.container-storage-interface.html">
             
                     
                     CSI - Container Storage Interface
@@ -243,9 +243,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../chapter5/02.host-volumes.html">
+        <li class="chapter " data-level="1.4.3" data-path="02.host-volumes.html">
             
-                <a href="../chapter5/02.host-volumes.html">
+                <a href="02.host-volumes.html">
             
                     
                     Using Host Volume
@@ -256,9 +256,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="../chapter5/03.pv&pvc.html">
+        <li class="chapter " data-level="1.4.4" data-path="03.pv&pvc.html">
             
-                <a href="../chapter5/03.pv&pvc.html">
+                <a href="03.pv&pvc.html">
             
                     
                     pv/pvc
@@ -269,9 +269,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="../chapter5/04.dynamic-provisioning.html">
+        <li class="chapter active" data-level="1.4.5" data-path="04.dynamic-provisioning.html">
             
-                <a href="../chapter5/04.dynamic-provisioning.html">
+                <a href="04.dynamic-provisioning.html">
             
                     
                     Dynamic Provisioning
@@ -301,9 +301,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.5.1" data-path="00.cheatsheet.html">
+        <li class="chapter " data-level="1.5.1" data-path="../chapter10/00.cheatsheet.html">
             
-                <a href="00.cheatsheet.html">
+                <a href="../chapter10/00.cheatsheet.html">
             
                     
                     cheatsheet
@@ -314,9 +314,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="01.port-forwarding.html">
+        <li class="chapter " data-level="1.5.2" data-path="../chapter10/01.port-forwarding.html">
             
-                <a href="01.port-forwarding.html">
+                <a href="../chapter10/01.port-forwarding.html">
             
                     
                     端口转发
@@ -362,7 +362,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >cheatsheet</a>
+        <a href=".." >Dynamic Provisioning</a>
     </h1>
 </div>
 
@@ -377,31 +377,70 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="cheatsheet">cheatsheet</h1>
-<h2 id="&#x4E00;&#x4E9B;&#x547D;&#x4EE4;&#x7684;&#x7B80;&#x5199;">&#x4E00;&#x4E9B;&#x547D;&#x4EE4;&#x7684;&#x7B80;&#x5199;</h2>
-<ul>
-<li><p><code>--namespace=xxx</code>&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x4E3A;<code>-n xxx</code></p>
-</li>
-<li><p><code>--all-namespaces</code>&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x4E3A;<code>-A</code></p>
-<p>&#x4F8B;&#x5982;&#xFF1A;</p>
-<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/kk7b2.png" alt="image-20200306191716985"></p>
-</li>
-</ul>
+                                <h1 id="dynamic-provisioning">Dynamic Provisioning</h1>
+<p>Dynamic volume provisioning allows storage volumes to be created on-demand. Without dynamic provisioning, cluster administrators have to manually make calls to their cloud or storage provider to create new storage volumes, and then create <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/" target="_blank"><code>PersistentVolume</code> objects</a> to represent them in Kubernetes. The dynamic provisioning feature eliminates the need for cluster administrators to pre-provision storage. Instead, it automatically provisions storage when it is requested by users.</p>
 <p><br></p>
-<h2 id="context&#x76F8;&#x5173;">context&#x76F8;&#x5173;</h2>
-<p>context&#x547D;&#x4EE4;&#x9002;&#x5408;&#x4E8E;<code>&#x8981;&#x7BA1;&#x7406;&#x591A;&#x4E2A;k8s&#x96C6;&#x7FA4;</code>&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x5728;&#x4E0D;&#x540C;&#x96C6;&#x7FA4;&#x4E4B;&#x524D;&#x6765;&#x56DE;&#x5207;&#x6362;&#x3002;</p>
+<p>Static Provisioning: A cluster administrator creates a number of PVs.</p>
+<p>Dynamic Provisioning: When none of the static PVs the administrator created matches a user&apos;s PersistentVolumeClaims, the cluster may try to dynamically provision a volume specially for the PVC.</p>
+<p>&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x4E00;&#x822C;&#x4F7F;&#x7528;<code>dynamic provisioning</code>&#x3002;&#x56E0;&#x4E3A;&#x4E0D;&#x7528;&#x4E8B;&#x5148;&#x5206;&#x914D;pv&#xFF0C;&#x66F4;&#x52A0;&#x7075;&#x6D3B;&#x3002;</p>
 <p><br></p>
-<p><strong>&#x83B7;&#x53D6;&#x6240;&#x6709;context</strong>&#xFF1A;</p>
-<pre><code>kubectl config get-contexts                          # display list of contexts
-</code></pre><p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/ngg7l.png" alt="image-20200306192817150"></p>
-<p><br></p>
-<p><strong>&#x83B7;&#x53D6;&#x5F53;&#x524D;context&#xFF1A;</strong></p>
-<pre><code>kubectl config current-context                       # display the current-context
-</code></pre><p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/b5rmw.png" alt="image-20200306192910090"></p>
-<p><br></p>
-<p><strong>&#x5207;&#x6362;context&#xFF1A;</strong></p>
-<pre><code>kubectl config use-context my-cluster-name           # set the default context to my-cluster-name
+<h2 id="&#x5B9E;&#x8DF5;">&#x5B9E;&#x8DF5;</h2>
+<p>&#x5728;EKS&#x4E0A;&#x4F7F;&#x7528;gp2&#x5F53;default storageclass&#xFF1A;</p>
+<p>&#x7CFB;&#x7EDF;&#x4E2D;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x4EFB;&#x4F55;<code>pv</code>&#x548C;<code>pvc</code>&#xFF0C;&#x6B64;&#x65F6;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;pvc&#xFF1A;</p>
+<pre><code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+</code></pre><p>&#x6B64;&#x65F6;&#x6CA1;&#x6709;pv&#x88AB;&#x521B;&#x5EFA;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;pvc&#x662F;pending&#x72B6;&#x6001;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/vmmur.png" alt="image-20200312164932618"></p>
+<p>&#x8FD9;&#x4E2A;pvc&#x7B49;&#x5F85;pod&#x6302;&#x8F7D;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/ixdol.png" alt="image-20200312165028351"></p>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;pod&#xFF0C;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;pvc&#xFF1A;</p>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+      - mountPath: &quot;/data&quot;
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: pvc
 </code></pre>
+<p>&#x6302;&#x8F7D;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;pv&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/jctvm.png" alt="image-20200312165206080"></p>
+<p>&#x6B64;&#x65F6;&#x5728;aws&#x63A7;&#x5236;&#x53F0;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;ebs&#x5377;&#x3002;</p>
+<p><br></p>
+<p>&#x5220;&#x9664;pod&#x548C;pvc&#x540E;&#xFF0C;pv&#x4E5F;&#x81EA;&#x52A8;&#x88AB;&#x5220;&#x9664;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/evu2d.png" alt="image-20200312165433355"></p>
+<p>&#x5728;aws&#x63A7;&#x5236;&#x53F0;&#x67E5;&#x770B;&#xFF0C;ebs&#x5377;&#x88AB;&#x81EA;&#x52A8;&#x5220;&#x9664;&#x3002;</p>
+<p><br></p>
+<h2 id="&#x6CE8;&#x610F;">&#x6CE8;&#x610F;</h2>
+<p>Dynamic provisioning can be enabled on a cluster such that all claims are dynamically provisioned if no storage class is specified. A cluster administrator can enable this behavior by:</p>
+<ul>
+<li>Marking one <code>StorageClass</code> object as <em>default</em>;</li>
+<li>Making sure that the <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#defaultstorageclass" target="_blank"><code>DefaultStorageClass</code> admission controller</a> is enabled on the API server.</li>
+</ul>
+<p>An administrator can mark a specific <code>StorageClass</code> as default by adding the <code>storageclass.kubernetes.io/is-default-class</code> annotation to it. When a default <code>StorageClass</code> exists in a cluster and a user creates a <code>PersistentVolumeClaim</code> with <code>storageClassName</code> unspecified, the <code>DefaultStorageClass</code> admission controller automatically adds the <code>storageClassName</code> field pointing to the default storage class.</p>
+<p>Note that there can be at most one <em>default</em> storage class on a cluster, or a <code>PersistentVolumeClaim</code> without <code>storageClassName</code> explicitly specified cannot be created.</p>
+<p><br></p>
+<p>&#x5728;EKS&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;storageclass&#x662F;gp2:</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/loeo4.png" alt="image-20200312173624052"></p>
+<p><br></p>
+<p>&#x5982;&#x679C;&#x662F;&#x81EA;&#x642D;&#x7684;k8s&#x96C6;&#x7FA4;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x6CA1;&#x6709;storageclass&#x7684;:</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/3rc3c.png" alt="image-20200312174638638"></p>
+
                                 
                                 </section>
                             
@@ -428,10 +467,10 @@
 
             
                 
-                
-                <a href="01.port-forwarding.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 端口转发">
-                    <i class="fa fa-angle-right"></i>
+                <a href="03.pv&pvc.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: pv/pvc">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -440,7 +479,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"cheatsheet","level":"1.5.1","depth":2,"next":{"title":"端口转发","level":"1.5.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]},"previous":{"title":"[常用技巧]","level":"1.5","depth":1,"ref":"","articles":[{"title":"cheatsheet","level":"1.5.1","depth":2,"path":"chapter10/00.cheatsheet.md","ref":"chapter10/00.cheatsheet.md","articles":[]},{"title":"端口转发","level":"1.5.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter10/00.cheatsheet.md","mtime":"2020-03-06T11:29:44.350Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-12T09:55:58.033Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Dynamic Provisioning","level":"1.4.5","depth":2,"next":{"title":"[常用技巧]","level":"1.5","depth":1,"ref":"","articles":[{"title":"cheatsheet","level":"1.5.1","depth":2,"path":"chapter10/00.cheatsheet.md","ref":"chapter10/00.cheatsheet.md","articles":[]},{"title":"端口转发","level":"1.5.2","depth":2,"path":"chapter10/01.port-forwarding.md","ref":"chapter10/01.port-forwarding.md","articles":[]}]},"previous":{"title":"pv/pvc","level":"1.4.4","depth":2,"path":"chapter5/03.pv&pvc.md","ref":"chapter5/03.pv&pvc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/04.dynamic-provisioning.md","mtime":"2020-03-12T09:55:16.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-12T09:55:58.033Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
