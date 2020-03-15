@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>创建service和endpoint · GitBook</title>
+        <title>k8s yaml defination · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="02.service-type.html" />
+    <link rel="next" href="21.explain command.html" />
     
     
-    <link rel="prev" href="00.why-service.html" />
+    <link rel="prev" href="05.namespace.html" />
     
 
     </head>
@@ -187,9 +187,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="../chapter1/00.kubernetes-overall-architecture.html">
+        <li class="chapter " data-level="1.3.1" data-path="00.kubernetes-overall-architecture.html">
             
-                <a href="../chapter1/00.kubernetes-overall-architecture.html">
+                <a href="00.kubernetes-overall-architecture.html">
             
                     
                     kubernetes overall architecture
@@ -200,9 +200,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="../chapter1/01.k8s-components.html">
+        <li class="chapter " data-level="1.3.2" data-path="01.k8s-components.html">
             
-                <a href="../chapter1/01.k8s-components.html">
+                <a href="01.k8s-components.html">
             
                     
                     k8s各个组件
@@ -213,9 +213,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../chapter1/02.pod.html">
+        <li class="chapter " data-level="1.3.3" data-path="02.pod.html">
             
-                <a href="../chapter1/02.pod.html">
+                <a href="02.pod.html">
             
                     
                     pod
@@ -226,9 +226,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="../chapter1/03.replicaset.html">
+        <li class="chapter " data-level="1.3.4" data-path="03.replicaset.html">
             
-                <a href="../chapter1/03.replicaset.html">
+                <a href="03.replicaset.html">
             
                     
                     replicaset
@@ -239,9 +239,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="../chapter1/04.deployment.html">
+        <li class="chapter " data-level="1.3.5" data-path="04.deployment.html">
             
-                <a href="../chapter1/04.deployment.html">
+                <a href="04.deployment.html">
             
                     
                     deployment
@@ -252,9 +252,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.6" data-path="../chapter1/05.namespace.html">
+        <li class="chapter " data-level="1.3.6" data-path="05.namespace.html">
             
-                <a href="../chapter1/05.namespace.html">
+                <a href="05.namespace.html">
             
                     
                     namespace
@@ -265,9 +265,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.7" data-path="../chapter1/20.yaml-defination.html">
+        <li class="chapter active" data-level="1.3.7" data-path="20.yaml-defination.html">
             
-                <a href="../chapter1/20.yaml-defination.html">
+                <a href="20.yaml-defination.html">
             
                     
                     k8s yaml defination
@@ -278,9 +278,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.8" data-path="../chapter1/21.explain command.html">
+        <li class="chapter " data-level="1.3.8" data-path="21.explain command.html">
             
-                <a href="../chapter1/21.explain command.html">
+                <a href="21.explain command.html">
             
                     
                     explain命令
@@ -549,9 +549,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.7.1" data-path="00.why-service.html">
+        <li class="chapter " data-level="1.7.1" data-path="../chapter6/00.why-service.html">
             
-                <a href="00.why-service.html">
+                <a href="../chapter6/00.why-service.html">
             
                     
                     为什么需要service
@@ -562,9 +562,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7.2" data-path="01.create-service-and-endpoint.html">
+        <li class="chapter " data-level="1.7.2" data-path="../chapter6/01.create-service-and-endpoint.html">
             
-                <a href="01.create-service-and-endpoint.html">
+                <a href="../chapter6/01.create-service-and-endpoint.html">
             
                     
                     创建service和endpoint
@@ -575,9 +575,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.3" data-path="02.service-type.html">
+        <li class="chapter " data-level="1.7.3" data-path="../chapter6/02.service-type.html">
             
-                <a href="02.service-type.html">
+                <a href="../chapter6/02.service-type.html">
             
                     
                     Service type
@@ -588,9 +588,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.4" data-path="04.ingress.html">
+        <li class="chapter " data-level="1.7.4" data-path="../chapter6/04.ingress.html">
             
-                <a href="04.ingress.html">
+                <a href="../chapter6/04.ingress.html">
             
                     
                     ingress
@@ -694,7 +694,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >创建service和endpoint</a>
+        <a href=".." >k8s yaml defination</a>
     </h1>
 </div>
 
@@ -709,101 +709,57 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x4EC0;&#x4E48;&#x662F;endpoint">&#x4EC0;&#x4E48;&#x662F;endpoint</h1>
-<!-- toc --><div id="toc" class="toc">
-
-<ul>
-<li><a href="#&#x81EA;&#x52A8;&#x521B;&#x5EFA;endpoint">&#x81EA;&#x52A8;&#x521B;&#x5EFA;endpoint</a></li>
-<li><a href="#&#x624B;&#x5DE5;&#x521B;&#x5EFA;endpoint">&#x624B;&#x5DE5;&#x521B;&#x5EFA;endpoint</a></li>
-<li><a href="#&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</a></li>
-</ul>
-
-</div><!-- tocstop -->
-<h2 id="&#x81EA;&#x52A8;&#x521B;&#x5EFA;endpoint">&#x81EA;&#x52A8;&#x521B;&#x5EFA;endpoint</h2>
-<p>&#x5728;&#x8BB2;&#x89E3;endpoint&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;deployment&#x548C;service&#xFF1A;</p>
-<pre><code>kubectl run my-nginx --image=nginx --replicas=3
-kubectl expose deployment/my-nginx --port=80
-</code></pre><p>&#x5F53;&#x6211;&#x4EEC;&#x6267;&#x884C;<code>kubectl get endpoints</code>&#xFF0C;&#x53D1;&#x73B0;&#x5DF2;&#x7ECF;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x597D;<code>my-nginx</code>&#x8FD9;&#x4E2A;endpoint&#xFF1A;</p>
-<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/8s171.png" alt="image-20200315100856437"></p>
-<p><br></p>
-<p>k8s&#x6587;&#x6863;&#x91CC;&#x662F;&#x8FD9;&#x4E48;&#x89E3;&#x91CA;&#x7684;&#xFF1A;</p>
-<p>As mentioned previously, a Service is backed by a group of Pods. These Pods are exposed through <code>endpoints</code>. The Service&#x2019;s selector will be evaluated continuously and the results will be POSTed to an <strong>Endpoints</strong> object also named <code>my-nginx</code>. When a Pod dies, it is automatically removed from the endpoints, and new Pods matching the Service&#x2019;s selector will automatically get added to the endpoints. </p>
-<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/sr8pv.png" alt="image-20200315101317741"></p>
-<p><br></p>
-<h2 id="&#x624B;&#x5DE5;&#x521B;&#x5EFA;endpoint">&#x624B;&#x5DE5;&#x521B;&#x5EFA;endpoint</h2>
-<p>&#x5982;&#x679C;&#x5728;&#x521B;&#x5EFA;service&#x65F6;&#xFF0C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;<code>selector</code>&#xFF0C;&#x90A3;&#x4E48;endpoint&#x5C31;&#x4E0D;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x3002;</p>
-<p>Services most commonly abstract access to Kubernetes Pods, but they can also abstract other kinds of backends. For example:</p>
-<ul>
-<li>You want to have an external database cluster in production, but in your test environment you use your own databases.</li>
-<li>You want to point your Service to a Service in a different <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces" target="_blank">Namespace</a> or on another cluster.</li>
-<li>You are migrating a workload to Kubernetes. Whilst evaluating the approach, you run only a proportion of your backends in Kubernetes.</li>
-</ul>
-<p>In any of these scenarios you can define a Service <em>without</em> a Pod selector. For example:</p>
-<p><br></p>
-<p>&#x521B;&#x5EFA;&#x4E24;&#x4E2A;nginx pod&#xFF1A;</p>
-<pre><code>kubectl run nginx --image=nginx --replicas=2
-</code></pre><p>&#x521B;&#x5EFA;service&#xFF1A;</p>
+                                <h1 id="k8s-yaml-defination">k8s yaml defination</h1>
+<h2 id="yaml-fileds">YAML fileds</h2>
+<p>&#x4E00;&#x4E2A;&#x5E38;&#x89C1;&#x7684;pod&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-yaml">apiVersion: v1
-kind: Service
+kind: Pod
 metadata:
-  name: demo-service
+  name: mywebserver
 spec:
-  ports:
-    - port: 8080
-      targetPort: 80
+  containers:
+    - name: mywebserver
+      image: nginx
 </code></pre>
-<p><br></p>
-<pre><code>[@BDSZYF000132741:Downloads]$ kubectl describe service demo-service
-Name: demo-service
-Namespace: default
-Labels: &lt;none&gt;
-Annotations: kubectl.kubernetes.io/last-applied-configuration:
-                     {&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;Service&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;demo-service&quot;,&quot;namespace&quot;:&quot;default&quot;},&quot;spec&quot;:{&quot;ports&quot;:[{&quot;port&quot;:808...
-Selector: &lt;none&gt;
-Type: ClusterIP
-IP: 10.100.227.149
-Port: &lt;unset&gt; 8080/TCP
-TargetPort: 80/TCP
-Endpoints: &lt;none&gt;
-Session Affinity: None
-Events: &lt;none&gt;
-</code></pre><p><code>Endpoints</code>&#x4E3A;&#x7A7A;&#xFF0C;&#x9700;&#x8981;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;endpoint&#x3002;k8s&#x6587;&#x6863;&#x4E2D;&#x662F;&#x8FD9;&#x4E48;&#x5199;&#x7684;&#xFF1A;</p>
-<p>Because this Service has no selector, the corresponding Endpoint object is <em>not</em> created automatically. You can manually map the Service to the network address and port where it&#x2019;s running, by adding an Endpoint object manually:</p>
-<p><br></p>
-<pre><code class="lang-bash">apiVersion: v1
-kind: Endpoints
-metadata:
-  name: demo-service
-subsets:
-  - addresses:
-      - ip: 192.168.217.125
-    ports:
-      - port: 80
-</code></pre>
-<p><br></p>
-<p>endpoint&#x7684;<code>metadata.name</code>&#x8981;&#x548C;service&#x7EDF;&#x4E00;&#x3002;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x7ED1;&#x5B9A;&#x3002;</p>
-<pre><code class="lang-bash">[@BDSZYF000132741:pod]$ kubectl describe service demo-service
-Name: demo-service
-Namespace: default
-Labels: &lt;none&gt;
-Annotations: kubectl.kubernetes.io/last-applied-configuration:
-                     {&quot;apiVersion&quot;:&quot;v1&quot;,&quot;kind&quot;:&quot;Service&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;demo-service&quot;,&quot;namespace&quot;:&quot;default&quot;},&quot;spec&quot;:{&quot;ports&quot;:[{&quot;port&quot;:808...
-Selector: &lt;none&gt;
-Type: ClusterIP
-IP: 10.100.227.149
-Port: &lt;unset&gt; 8080/TCP
-TargetPort: 80/TCP
-Endpoints: 192.168.217.125:80
-Session Affinity: None
-</code></pre>
-<p>&#x6B64;&#x65F6;<code>curl 10.100.227.149:8080</code>, &#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x901A;&#x3002;</p>
-<p><br></p>
-<p><br></p>
-<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<p>k8s&#x91CC;&#x7684;&#x4EFB;&#x4F55;&#x5BF9;&#x8C61;&#xFF0C;&#x90FD;&#x5305;&#x62EC;&#x4EE5;&#x4E0B;&#x56DB;&#x4E2A;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">apiVersion</td>
+<td>Version of API</td>
+</tr>
+<tr>
+<td style="text-align:left">kind</td>
+<td>Kind of object you want to scale</td>
+</tr>
+<tr>
+<td style="text-align:left">Metadata name</td>
+<td>Name of object that uniquely identifies it.</td>
+</tr>
+<tr>
+<td style="text-align:left">spec</td>
+<td><strong>Desired state of the object.</strong></td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>service&#x5C31;&#x50CF;aws&#x4E2D;&#x7684;alb&#xFF0C;&#x521B;&#x5EFA;&#x4E4B;&#x540E;&#x8FD8;&#x9700;&#x8981;target-group&#x3002;</li>
-<li>endpoint&#x5C31;&#x50CF;aws&#x4E2D;&#x7684;target group&#x3002;&#x5C06;&#x5176;&#x7ED1;&#x5B9A;&#x5230;alb&#x4E0A;&#x540E;&#x7528;&#x6237;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x5230;&#x7ED3;&#x679C;&#x3002;</li>
+<li>apiVersion&#x8868;&#x793A;api&#x7248;&#x672C;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#x7248;&#x672C;&#x53EF;&#x80FD;&#x4E0D;&#x540C;&#x3002;&#x4F8B;&#x5982;v1, v1beta&#x7B49;</li>
+<li>kind&#x8868;&#x793A;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#xFF0C;&#x4F8B;&#x5982;<code>Deployment, Pod, Service, Secret....</code></li>
+<li><p>Metadata&#x91CC;&#x4E00;&#x822C;&#x58F0;&#x660E;&#x5BF9;&#x8C61;&#x7684;&#x540D;&#x79F0;&#x3001;&#x6807;&#x7B7E;&#x7B49;&#x3002;</p>
+</li>
+<li><p>spec&#x533A;&#x57DF;&#x662F;<code>Desired state of the object</code>. &#x662F;&#x5BF9;&#x8C61;&#x7684;&#x6838;&#x5FC3;&#x63CF;&#x8FF0;&#x3002;</p>
+</li>
 </ul>
+<p><br></p>
+<p><br></p>
+<p>&#x5BF9;&#x8FD9;&#x56DB;&#x4E2A;field&#x4E00;&#x5B9A;&#x8981;&#x719F;&#x6089;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>explain</code>&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x5177;&#x4F53;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-18-063741.png" alt="image-20200118143740683"></p>
 
                                 
                                 </section>
@@ -831,12 +787,12 @@ Session Affinity: None
 
             
                 
-                <a href="00.why-service.html" class="navigation navigation-prev " aria-label="Previous page: 为什么需要service">
+                <a href="05.namespace.html" class="navigation navigation-prev " aria-label="Previous page: namespace">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="02.service-type.html" class="navigation navigation-next " aria-label="Next page: Service type">
+                <a href="21.explain command.html" class="navigation navigation-next " aria-label="Next page: explain命令">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -847,7 +803,7 @@ Session Affinity: None
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"创建service和endpoint","level":"1.7.2","depth":2,"next":{"title":"Service type","level":"1.7.3","depth":2,"path":"chapter6/02.service-type.md","ref":"chapter6/02.service-type.md","articles":[]},"previous":{"title":"为什么需要service","level":"1.7.1","depth":2,"path":"chapter6/00.why-service.md","ref":"chapter6/00.why-service.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter6/01.create-service-and-endpoint.md","mtime":"2020-03-15T02:22:11.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-15T08:20:40.260Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"k8s yaml defination","level":"1.3.7","depth":2,"next":{"title":"explain命令","level":"1.3.8","depth":2,"path":"chapter1/21.explain command.md","ref":"chapter1/21.explain command.md","articles":[]},"previous":{"title":"namespace","level":"1.3.6","depth":2,"path":"chapter1/05.namespace.md","ref":"chapter1/05.namespace.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/20.yaml-defination.md","mtime":"2020-03-15T08:20:22.842Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-15T08:20:40.260Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
