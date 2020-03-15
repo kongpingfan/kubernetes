@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>logging · GitBook</title>
+        <title>NodeSelector · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="02.node-affinity.html" />
     
-    <link rel="prev" href="00.monitoring.html" />
+    
+    <link rel="prev" href="00.DamemonSets.html" />
     
 
     </head>
@@ -217,9 +219,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../chapter3/00.DamemonSets.html">
+        <li class="chapter " data-level="1.4.1" data-path="00.DamemonSets.html">
             
-                <a href="../chapter3/00.DamemonSets.html">
+                <a href="00.DamemonSets.html">
             
                     
                     DamemonSets
@@ -230,9 +232,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../chapter3/01.NodeSelector.html">
+        <li class="chapter active" data-level="1.4.2" data-path="01.NodeSelector.html">
             
-                <a href="../chapter3/01.NodeSelector.html">
+                <a href="01.NodeSelector.html">
             
                     
                     NodeSelector
@@ -243,9 +245,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../chapter3/02.node-affinity.html">
+        <li class="chapter " data-level="1.4.3" data-path="02.node-affinity.html">
             
-                <a href="../chapter3/02.node-affinity.html">
+                <a href="02.node-affinity.html">
             
                     
                     Node Affinity
@@ -256,9 +258,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="../chapter3/03.pod-affinity.html">
+        <li class="chapter " data-level="1.4.4" data-path="03.pod-affinity.html">
             
-                <a href="../chapter3/03.pod-affinity.html">
+                <a href="03.pod-affinity.html">
             
                     
                     pod affinity
@@ -269,9 +271,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="../chapter3/04.resource-limits.html">
+        <li class="chapter " data-level="1.4.5" data-path="04.resource-limits.html">
             
-                <a href="../chapter3/04.resource-limits.html">
+                <a href="04.resource-limits.html">
             
                     
                     Resource Limits
@@ -282,9 +284,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="../chapter3/05.static-pods.html">
+        <li class="chapter " data-level="1.4.6" data-path="05.static-pods.html">
             
-                <a href="../chapter3/05.static-pods.html">
+                <a href="05.static-pods.html">
             
                     
                     Static Pods
@@ -295,9 +297,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7" data-path="../chapter3/06.taints-and-tolerations.html">
+        <li class="chapter " data-level="1.4.7" data-path="06.taints-and-tolerations.html">
             
-                <a href="../chapter3/06.taints-and-tolerations.html">
+                <a href="06.taints-and-tolerations.html">
             
                     
                     Taints and Tolerations
@@ -327,9 +329,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="00.monitoring.html">
+        <li class="chapter " data-level="1.5.1" data-path="../chapter4/00.monitoring.html">
             
-                <a href="00.monitoring.html">
+                <a href="../chapter4/00.monitoring.html">
             
                     
                     monitoring cluster status
@@ -340,9 +342,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5.2" data-path="01.logging.html">
+        <li class="chapter " data-level="1.5.2" data-path="../chapter4/01.logging.html">
             
-                <a href="01.logging.html">
+                <a href="../chapter4/01.logging.html">
             
                     
                     logging
@@ -601,7 +603,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >logging</a>
+        <a href=".." >NodeSelector</a>
     </h1>
 </div>
 
@@ -616,14 +618,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="logging">logging</h1>
-<p>&#x67E5;&#x770B;pod&#x7684;log&#xFF1A;</p>
-<pre><code class="lang-bash">kubectl logs -f pod_name
-</code></pre>
-<p>&#x5982;&#x679C;pod&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;&#x591A;&#x4E2A;container&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x4F1A;fail&#xFF0C;&#x56E0;&#x4E3A;k8s&#x4E0D;&#x77E5;&#x9053;&#x8981;&#x67E5;&#x770B;&#x54EA;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x65E5;&#x5FD7;&#x3002;</p>
-<p>&#x9700;&#x8981;&#x6307;&#x5B9A;<code>container_name</code>:</p>
-<pre><code class="lang-bash">kubectl logs -f pod_name container_name
-</code></pre>
+                                <h1 id="nodeselector">NodeSelector</h1>
 
                                 
                                 </section>
@@ -651,10 +646,14 @@
 
             
                 
-                <a href="00.monitoring.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: monitoring cluster status">
+                <a href="00.DamemonSets.html" class="navigation navigation-prev " aria-label="Previous page: DamemonSets">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="02.node-affinity.html" class="navigation navigation-next " aria-label="Next page: Node Affinity">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -663,7 +662,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"logging","level":"1.5.2","depth":2,"next":{"title":"[Volumes]","level":"1.6","depth":1,"ref":"","articles":[{"title":"docker storage drivers","level":"1.6.1","depth":2,"path":"chapter5/00.docker-storage-drivers.md","ref":"chapter5/00.docker-storage-drivers.md","articles":[]},{"title":"CSI - Container Storage Interface","level":"1.6.2","depth":2,"path":"chapter5/01.container-storage-interface.md","ref":"chapter5/01.container-storage-interface.md","articles":[]},{"title":"Using Host Volume","level":"1.6.3","depth":2,"path":"chapter5/02.host-volumes.md","ref":"chapter5/02.host-volumes.md","articles":[]},{"title":"pv/pvc","level":"1.6.4","depth":2,"path":"chapter5/03.pv&pvc.md","ref":"chapter5/03.pv&pvc.md","articles":[]},{"title":"Dynamic Provisioning","level":"1.6.5","depth":2,"path":"chapter5/04.dynamic-provisioning.md","ref":"chapter5/04.dynamic-provisioning.md","articles":[]}]},"previous":{"title":"monitoring cluster status","level":"1.5.1","depth":2,"path":"chapter4/00.monitoring.md","ref":"chapter4/00.monitoring.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter4/01.logging.md","mtime":"2020-03-13T02:35:08.794Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-15T02:54:03.446Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"NodeSelector","level":"1.4.2","depth":2,"next":{"title":"Node Affinity","level":"1.4.3","depth":2,"path":"chapter3/02.node-affinity.md","ref":"chapter3/02.node-affinity.md","articles":[]},"previous":{"title":"DamemonSets","level":"1.4.1","depth":2,"path":"chapter3/00.DamemonSets.md","ref":"chapter3/00.DamemonSets.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter3/01.NodeSelector.md","mtime":"2020-03-15T02:53:28.015Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-15T02:54:03.446Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
