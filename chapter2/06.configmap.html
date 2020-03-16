@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>什么是云原生 · GitBook</title>
+        <title>ConfigMap · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="03.kubernetes核心.html" />
     
-    
-    <link rel="prev" href="01.微服务.html" />
+    <link rel="prev" href="05.environment.html" />
     
 
     </head>
@@ -116,9 +114,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="00.容器编排.html">
+        <li class="chapter " data-level="1.2.1" data-path="../chapter0/00.容器编排.html">
             
-                <a href="00.容器编排.html">
+                <a href="../chapter0/00.容器编排.html">
             
                     
                     什么是容器编排
@@ -129,9 +127,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="01.微服务.html">
+        <li class="chapter " data-level="1.2.2" data-path="../chapter0/01.微服务.html">
             
-                <a href="01.微服务.html">
+                <a href="../chapter0/01.微服务.html">
             
                     
                     什么是微服务
@@ -142,9 +140,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="02.云原生.html">
+        <li class="chapter " data-level="1.2.3" data-path="../chapter0/02.云原生.html">
             
-                <a href="02.云原生.html">
+                <a href="../chapter0/02.云原生.html">
             
                     
                     什么是云原生
@@ -155,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="03.kubernetes核心.html">
+        <li class="chapter " data-level="1.2.4" data-path="../chapter0/03.kubernetes核心.html">
             
-                <a href="03.kubernetes核心.html">
+                <a href="../chapter0/03.kubernetes核心.html">
             
                     
                     kubernetes核心
@@ -310,9 +308,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../chapter2/00.label.html">
+        <li class="chapter " data-level="1.4.1" data-path="00.label.html">
             
-                <a href="../chapter2/00.label.html">
+                <a href="00.label.html">
             
                     
                     Label
@@ -323,9 +321,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../chapter2/01.liveness-probe.html">
+        <li class="chapter " data-level="1.4.2" data-path="01.liveness-probe.html">
             
-                <a href="../chapter2/01.liveness-probe.html">
+                <a href="01.liveness-probe.html">
             
                     
                     liveness probe
@@ -336,9 +334,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../chapter2/02.readiness-Probe.html">
+        <li class="chapter " data-level="1.4.3" data-path="02.readiness-Probe.html">
             
-                <a href="../chapter2/02.readiness-Probe.html">
+                <a href="02.readiness-Probe.html">
             
                     
                     readiness probe
@@ -349,9 +347,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="../chapter2/03.job-and-cronjob.html">
+        <li class="chapter " data-level="1.4.4" data-path="03.job-and-cronjob.html">
             
-                <a href="../chapter2/03.job-and-cronjob.html">
+                <a href="03.job-and-cronjob.html">
             
                     
                     job&&cronjob
@@ -362,9 +360,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="../chapter2/04.command-and-args.html">
+        <li class="chapter " data-level="1.4.5" data-path="04.command-and-args.html">
             
-                <a href="../chapter2/04.command-and-args.html">
+                <a href="04.command-and-args.html">
             
                     
                     command&args
@@ -375,9 +373,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="../chapter2/05.environment.html">
+        <li class="chapter " data-level="1.4.6" data-path="05.environment.html">
             
-                <a href="../chapter2/05.environment.html">
+                <a href="05.environment.html">
             
                     
                     k8s environment
@@ -388,9 +386,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7" data-path="../chapter2/06.configmap.html">
+        <li class="chapter active" data-level="1.4.7" data-path="06.configmap.html">
             
-                <a href="../chapter2/06.configmap.html">
+                <a href="06.configmap.html">
             
                     
                     ConfigMap
@@ -817,7 +815,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >什么是云原生</a>
+        <a href=".." >ConfigMap</a>
     </h1>
 </div>
 
@@ -832,61 +830,139 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x4EC0;&#x4E48;&#x662F;&#x4E91;&#x539F;&#x751F;">&#x4EC0;&#x4E48;&#x662F;&#x4E91;&#x539F;&#x751F;</h1>
+                                <h1 id="configmap">ConfigMap</h1>
 <!-- toc --><div id="toc" class="toc">
 
 <ul>
-<li><a href="#&#x4EC0;&#x4E48;&#x662F;&#x4E91;&#x539F;&#x751F;">&#x4EC0;&#x4E48;&#x662F;&#x4E91;&#x539F;&#x751F;</a></li>
-<li><a href="#&#x4E91;&#x539F;&#x751F;&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;">&#x4E91;&#x539F;&#x751F;&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;:</a></li>
-<li><a href="#&#x4E91;&#x539F;&#x751F;&#x4E0E;&#x672C;&#x5730;&#x90E8;&#x7F72;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x5DEE;&#x5F02;">&#x4E91;&#x539F;&#x751F;&#x4E0E;&#x672C;&#x5730;&#x90E8;&#x7F72;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x5DEE;&#x5F02;</a></li>
+<li><a href="#&#x80CC;&#x666F;">&#x80CC;&#x666F;</a></li>
+<li><a href="#&#x521B;&#x5EFA;configmap">&#x521B;&#x5EFA;ConfigMap</a><ul>
+<li><a href="#from-literal">from-literal</a></li>
+<li><a href="#from-file">from file</a></li>
+</ul>
+</li>
+<li><a href="#pod&#x4F7F;&#x7528;configmap">pod&#x4F7F;&#x7528;configmap</a><ul>
+<li><a href="#&#x6620;&#x5C04;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;">&#x6620;&#x5C04;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;</a></li>
+<li><a href="#&#x4EE5;&#x6587;&#x4EF6;&#x5F62;&#x5F0F;&#x6620;&#x5C04;&#x5230;pod&#x76EE;&#x5F55;">&#x4EE5;&#x6587;&#x4EF6;&#x5F62;&#x5F0F;&#x6620;&#x5C04;&#x5230;pod&#x76EE;&#x5F55;</a></li>
+</ul>
+</li>
 </ul>
 
 </div><!-- tocstop -->
-<h2 id="&#x4EC0;&#x4E48;&#x662F;&#x4E91;&#x539F;&#x751F;">&#x4EC0;&#x4E48;&#x662F;&#x4E91;&#x539F;&#x751F;</h2>
-<p>CNCF&#x7ED9;&#x51FA;&#x4E86;&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7684;&#x4E09;&#x5927;&#x7279;&#x5F81;&#xFF1A;</p>
+<h2 id="&#x80CC;&#x666F;">&#x80CC;&#x666F;</h2>
+<p>&#x4E0A;&#x8282;&#x4ECB;&#x7ECD;&#x4E86;&#x5C06;env&#x76F4;&#x63A5;&#x5199;&#x5230;yaml&#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<p>&#x5F53;&#x6709;&#x8BB8;&#x591A;&#x7684;yaml&#x6587;&#x4EF6;&#xFF0C;&#x4ED6;&#x4EEC;&#x90FD;&#x6709;&#x4E00;&#x5957;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x7BA1;&#x7406;&#x8D77;&#x6765;&#x5C31;&#x975E;&#x5E38;&#x9EBB;&#x70E6;&#x3002;</p>
+<p><br></p>
+<p>&#x4F8B;&#x5982;&#x6709;dev&#x73AF;&#x5883;&#x548C;prod&#x73AF;&#x5883;&#xFF0C;&#x91CC;&#x9762;&#x7EF4;&#x62A4;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x53D8;&#x91CF;&#xFF1A;</p>
+<p>Dev env: <code>app.env=dev app.mem=2048m app.properties=dev.env.url</code></p>
+<p>Prod env: <code>app.env=prod app.mem=8096m app.properties=prod.env.url</code></p>
+<p>&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E9B;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x653E;&#x5230;<code>ConfigMap</code>&#x91CC;&#x9762;<strong>&#x7EDF;&#x4E00;&#x7BA1;&#x7406;</strong>&#x3002;</p>
+<p>&#x7C7B;&#x6BD4;&#x4E8E;aws&#x7684;parameter store&#xFF0C;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<p>&#x4F7F;&#x7528;<code>ConfigMap</code>&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF1A;<strong>&#x5148;&#x521B;&#x5EFA;&#x3001;&#x518D;&#x6620;&#x5C04;&#x5230;Pod&#x91CC;&#x3002;</strong></p>
+<p><br></p>
+<h2 id="&#x521B;&#x5EFA;configmap">&#x521B;&#x5EFA;ConfigMap</h2>
+<p>&#x548C;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#x4E00;&#x6837;&#xFF0C;<code>ConfigMap</code>&#x4E5F;&#x6709;&#x4E24;&#x79CD;&#x521B;&#x5EFA;&#x65B9;&#x5F0F;&#xFF1A;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x548C;&#x4F7F;&#x7528;yaml&#x6587;&#x4EF6;&#x3002;</p>
+<p><br></p>
+<p>&#x547D;&#x4EE4;&#x884C;&#xFF1A;<code>kubectl create configmap [NAME] [DATA-SOURCE]</code></p>
 <ul>
-<li>&#x5BB9;&#x5668;&#x5316;&#x5C01;&#x88C5;&#xFF1A;&#x4EE5;&#x5BB9;&#x5668;&#x4E3A;&#x57FA;&#x7840;&#xFF0C;&#x63D0;&#x9AD8;&#x6574;&#x4F53;&#x5F00;&#x53D1;&#x6C34;&#x5E73;&#xFF0C;&#x5F62;&#x6210;&#x4EE3;&#x7801;&#x548C;&#x7EC4;&#x4EF6;&#x91CD;&#x7528;&#xFF0C;&#x7B80;&#x5316;&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x7EF4;&#x62A4;&#x3002;&#x5728;&#x5BB9;&#x5668;&#x4E2D;&#x8FD0;&#x884C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x8FDB;&#x7A0B;&#xFF0C;&#x5E76;&#x4F5C;&#x4E3A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x90E8;&#x7F72;&#x7684;&#x72EC;&#x7ACB;&#x5355;&#x5143;&#xFF0C;&#x5B9E;&#x73B0;&#x9AD8;&#x6C34;&#x5E73;&#x8D44;&#x6E90;&#x9694;&#x79BB;&#x3002;</li>
-<li>&#x52A8;&#x6001;&#x7BA1;&#x7406;&#xFF1A;&#x901A;&#x8FC7;&#x96C6;&#x4E2D;&#x5F0F;&#x7684;&#x7F16;&#x6392;&#x8C03;&#x5EA6;&#x7CFB;&#x7EDF;&#x6765;&#x52A8;&#x6001;&#x7684;&#x7BA1;&#x7406;&#x548C;&#x8C03;&#x5EA6;&#x3002;</li>
-<li>&#x9762;&#x5411;&#x5FAE;&#x670D;&#x52A1;&#xFF1A;&#x660E;&#x786E;&#x670D;&#x52A1;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#xFF0C;&#x4E92;&#x76F8;&#x89E3;&#x8026;&#x3002;</li>
+<li>File</li>
+<li>directory</li>
+<li>Literal value</li>
 </ul>
-<p><img src="https://tva1.sinaimg.cn/large/006tNc79gy1g2jp461l3jj30zk0n7wgb.jpg" alt="03.jpg"></p>
-<p>CNCF&#x5C06;&#x201C;&#x4E91;&#x539F;&#x751F;&#x201D;&#x5B9A;&#x4E49;&#x7684;&#x66F4;&#x4E3A;&#x72ED;&#x7A84;&#xFF0C;&#x610F;&#x5473;&#x7740;</p>
-<ul>
-<li><p><strong>&#x4F7F;&#x7528;&#x5F00;&#x6E90;&#x8F6F;&#x4EF6;&#x5806;&#x6808;&#x8FDB;&#x884C;&#x5BB9;&#x5668;&#x5316;</strong>&#xFF0C;&#x5176;&#x4E2D;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6BCF;&#x4E2A;&#x90E8;&#x5206;&#x90FD;&#x6253;&#x5305;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;<strong>&#x52A8;&#x6001;&#x7F16;&#x6392;&#xFF0C;&#x4EE5;&#x4FBF;&#x6BCF;&#x4E2A;&#x90E8;&#x5206;&#x90FD;&#x88AB;&#x4E3B;&#x52A8;&#x8C03;&#x5EA6;&#x548C;&#x7BA1;&#x7406;&#xFF0C;</strong> <strong>&#x4EE5;&#x4F18;&#x5316;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x7387;&#x548C;&#x9762;&#x5411;&#x5FAE;&#x670D;&#x52A1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6574;&#x4F53;&#x7075;&#x6D3B;&#x6027;&#x548C;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#x3002;</strong></p>
-</li>
-<li><p>&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x901A;&#x5E38;&#x5305;&#x62EC;DevOps&#xFF0C;&#x654F;&#x6377;&#x65B9;&#x6CD5;&#xFF0C;&#x5FAE;&#x670D;&#x52A1;&#xFF0C;&#x4E91;&#x5E73;&#x53F0;&#xFF0C;Kubernetes&#x548C;Docker&#x7B49;&#x5BB9;&#x5668;&#xFF0C;&#x4EE5;&#x53CA;&#x6301;&#x7EED;&#x4EA4;&#x4ED8;&#xFF0C;&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;&#x6BCF;&#x79CD;&#x65B0;&#x7684;&#x548C;&#x73B0;&#x4EE3;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x90E8;&#x7F72;&#x65B9;&#x6CD5;&#x3002;</p>
-</li>
-</ul>
-<h2 id="&#x4E91;&#x539F;&#x751F;&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;">&#x4E91;&#x539F;&#x751F;&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x8BA1;&#x7406;&#x5FF5;:</h2>
-<ul>
-<li>&#x9762;&#x5411;&#x5206;&#x5E03;&#x5F0F;&#x8BBE;&#x8BA1;&#xFF08;Distribution&#xFF09;&#xFF1A;&#x5BB9;&#x5668;&#x3001;&#x5FAE;&#x670D;&#x52A1;&#x3001;API &#x9A71;&#x52A8;&#x7684;&#x5F00;&#x53D1;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x914D;&#x7F6E;&#x8BBE;&#x8BA1;&#xFF08;Configuration&#xFF09;&#xFF1A;&#x4E00;&#x4E2A;&#x955C;&#x50CF;&#xFF0C;&#x591A;&#x4E2A;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x97E7;&#x6027;&#x8BBE;&#x8BA1;&#xFF08;Resistancy&#xFF09;&#xFF1A;&#x6545;&#x969C;&#x5BB9;&#x5FCD;&#x548C;&#x81EA;&#x6108;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x5F39;&#x6027;&#x8BBE;&#x8BA1;&#xFF08;Elasticity&#xFF09;&#xFF1A;&#x5F39;&#x6027;&#x6269;&#x5C55;&#x548C;&#x5BF9;&#x73AF;&#x5883;&#x53D8;&#x5316;&#xFF08;&#x8D1F;&#x8F7D;&#xFF09;&#x505A;&#x51FA;&#x54CD;&#x5E94;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x4EA4;&#x4ED8;&#x8BBE;&#x8BA1;&#xFF08;Delivery&#xFF09;&#xFF1A;&#x81EA;&#x52A8;&#x62C9;&#x8D77;&#xFF0C;&#x7F29;&#x77ED;&#x4EA4;&#x4ED8;&#x65F6;&#x95F4;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x6027;&#x80FD;&#x8BBE;&#x8BA1;&#xFF08;Performance&#xFF09;&#xFF1A;&#x54CD;&#x5E94;&#x5F0F;&#xFF0C;&#x5E76;&#x53D1;&#x548C;&#x8D44;&#x6E90;&#x9AD8;&#x6548;&#x5229;&#x7528;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x81EA;&#x52A8;&#x5316;&#x8BBE;&#x8BA1;&#xFF08;Automation&#xFF09;&#xFF1A;&#x81EA;&#x52A8;&#x5316;&#x7684; DevOps&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x8BCA;&#x65AD;&#x6027;&#x8BBE;&#x8BA1;&#xFF08;Diagnosability&#xFF09;&#xFF1A;&#x96C6;&#x7FA4;&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;&#x3001;metric &#x548C;&#x8FFD;&#x8E2A;&#xFF1B;</li>
-<li>&#x9762;&#x5411;&#x5B89;&#x5168;&#x6027;&#x8BBE;&#x8BA1;&#xFF08;Security&#xFF09;&#xFF1A;&#x5B89;&#x5168;&#x7AEF;&#x70B9;&#x3001;API Gateway&#x3001;&#x7AEF;&#x5230;&#x7AEF;&#x52A0;&#x5BC6;&#xFF1B;</li>
-</ul>
-<h2 id="&#x4E91;&#x539F;&#x751F;&#x4E0E;&#x672C;&#x5730;&#x90E8;&#x7F72;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x5DEE;&#x5F02;">&#x4E91;&#x539F;&#x751F;&#x4E0E;&#x672C;&#x5730;&#x90E8;&#x7F72;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x5DEE;&#x5F02;</h2>
-<p><strong>&#x53EF;&#x66F4;&#x65B0;</strong></p>
-<p>&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x59CB;&#x7EC8;&#x662F;&#x6700;&#x65B0;&#x7684;&#xFF0C;&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x59CB;&#x7EC8;&#x53EF;&#x7528;&#x3002;</p>
-<p>&#x672C;&#x5730;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x66F4;&#x65B0;&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x5E38;&#x7531;&#x4F9B;&#x5E94;&#x5546;&#x6309;&#x8BA2;&#x9605;&#x63D0;&#x4F9B;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x5B89;&#x88C5;&#x66F4;&#x65B0;&#x65F6;&#x9700;&#x8981;&#x505C;&#x673A;&#x3002;</p>
-<p><strong>&#x5F39;&#x6027;</strong></p>
-<p>&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x901A;&#x8FC7;&#x5728;&#x5CF0;&#x503C;&#x671F;&#x95F4;&#x589E;&#x52A0;&#x7684;&#x8D44;&#x6E90;&#x6765;&#x5229;&#x7528;&#x4E91;&#x7684;&#x5F39;&#x6027;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7684;&#x57FA;&#x4E8E;&#x4E91;&#x7684;&#x7535;&#x5B50;&#x5546;&#x52A1;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;&#x9891;&#x7E41;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x8BBE;&#x7F6E;&#x4E3A;&#x4F7F;&#x7528;&#x989D;&#x5916;&#x7684;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#xFF0C;&#x76F4;&#x5230;&#x5CF0;&#x503C;&#x6D88;&#x9000;&#x7136;&#x540E;&#x5173;&#x95ED;&#x8FD9;&#x4E9B;&#x8D44;&#x6E90;&#x3002;&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x9700;&#x8981;&#x8C03;&#x6574;&#x589E;&#x52A0;&#x8D44;&#x6E90;&#x548C;&#x89C4;&#x6A21;&#x3002;</p>
-<p>&#x672C;&#x5730;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x65E0;&#x6CD5;&#x52A8;&#x6001;&#x6269;&#x5C55;&#x3002;</p>
-<p><strong>&#x591A;&#x79DF;&#x6237;</strong></p>
-<p>&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5728;&#x865A;&#x62DF;&#x5316;&#x73AF;&#x5883;&#x4E2D;&#x5DE5;&#x4F5C;&#xFF0C;&#x5E76;&#x4E0E;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x3002;</p>
-<p>&#x8BB8;&#x591A;&#x672C;&#x5730;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8981;&#x4E48;&#x5728;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x4E2D;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#xFF0C;&#x8981;&#x4E48;&#x6839;&#x672C;&#x4E0D;&#x5DE5;&#x4F5C;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x975E;&#x865A;&#x62DF;&#x5316;&#x73AF;&#x5883;&#x3002;</p>
-<p><strong>&#x8FDE;&#x63A5;&#x8D44;&#x6E90;</strong></p>
-<p>&#x672C;&#x5730;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E0E;&#x7F51;&#x7EDC;&#x8D44;&#x6E90;&#x7684;&#x8FDE;&#x63A5;&#x76F8;&#x5F53;&#x4E25;&#x683C;&#xFF0C;&#x4F8B;&#x5982;&#x7F51;&#x7EDC;&#xFF0C;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x6743;&#x9650;&#x548C;&#x5B58;&#x50A8;&#x3002;&#x5176;&#x4E2D;&#x8BB8;&#x591A;&#x8D44;&#x6E90;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x786C;&#x7F16;&#x7801;&#xFF0C;&#x5982;&#x679C;&#x79FB;&#x52A8;&#x6216;&#x66F4;&#x6539;&#x4E86;&#x4EFB;&#x4F55;&#x5185;&#x5BB9;&#xFF0C;&#x5B83;&#x4EEC;&#x5C31;&#x4F1A;&#x4E2D;&#x65AD;&#x3002;</p>
-<p><strong>&#x81EA;&#x52A8;&#x5316;</strong></p>
-<p>&#x4E91;&#x8BA1;&#x7B97;&#x7684;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x81EA;&#x52A8;&#x5316;&#x7684;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7BA1;&#x7406;&#x3002; &#x201C;&#x4E91;&#x539F;&#x751F;&#x4EA4;&#x4ED8;&#x7684;&#x597D;&#x5904;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x901F;&#x5EA6;&#x548C;&#x654F;&#x6377;&#x6027;&#xFF0C;&#x4F9D;&#x8D56;&#x4E8E;&#x53EF;&#x9760;&#xFF0C;&#x7ECF;&#x8FC7;&#x9A8C;&#x8BC1;&#x548C;&#x7ECF;&#x8FC7;&#x5BA1;&#x6838;&#x7684;&#x5DF2;&#x77E5;&#x826F;&#x597D;&#x6D41;&#x7A0B;&#x7684;&#x57FA;&#x7840;&#xFF0C;&#x8FD9;&#x4E9B;&#x6D41;&#x7A0B;&#x6839;&#x636E;&#x81EA;&#x52A8;&#x5316;&#x548C;&#x7F16;&#x6392;&#x5DE5;&#x5177;&#x7684;&#x9700;&#x8981;&#x800C;&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x4EBA;&#x5DE5;&#x5E72;&#x9884;&#x91CD;&#x590D;&#x6267;&#x884C;&#xFF0C;&#x201D;Splunk&#x7684;Mann&#x8BF4;&#x3002;&#x5DE5;&#x7A0B;&#x5E08;&#x5E94;&#x8BE5;&#x8003;&#x8651;&#x81EA;&#x52A8;&#x5316;&#x662F;&#x4E0D;&#x6B62;&#x4E00;&#x6B21;&#x505A;&#x7684;&#x4EFB;&#x4F55;&#x4E8B;&#x60C5;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x53EF;&#x91CD;&#x590D;&#x6027;&#xFF0C;&#x81EA;&#x52A9;&#x670D;&#x52A1;&#xFF0C;&#x654F;&#x6377;&#x6027;&#xFF0C;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x4EE5;&#x53CA;&#x5BA1;&#x8BA1;&#x548C;&#x63A7;&#x5236;&#x3002;</p>
-<p>&#x672C;&#x5730;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5FC5;&#x987B;&#x624B;&#x52A8;&#x7BA1;&#x7406;&#x3002;</p>
-<p><strong>&#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;</strong></p>
-<p>&#x672C;&#x5730;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F80;&#x5F80;&#x5728;&#x8BBE;&#x8BA1;&#x4E0A;&#x662F;&#x5355;&#x4E00;&#x7684;&#x3002;&#x4ED6;&#x4EEC;&#x80AF;&#x5B9A;&#x4F1A;&#x5C06;&#x4E00;&#x4E9B;&#x5DE5;&#x4F5C;&#x5378;&#x8F7D;&#x5230;&#x5E93;&#x4E2D;&#xFF0C;&#x4F46;&#x6700;&#x7EC8;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x5927;&#x91CF;&#x5B50;&#x7A0B;&#x5E8F;&#x7684;&#x5927;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;&#x4E91;&#x539F;&#x751F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x66F4;&#x52A0;&#x6A21;&#x5757;&#x5316;&#xFF0C;&#x8BB8;&#x591A;&#x529F;&#x80FD;&#x5206;&#x89E3;&#x4E3A;&#x5FAE;&#x670D;&#x52A1;&#x3002;&#x8FD9;&#x5141;&#x8BB8;&#x5728;&#x4E0D;&#x9700;&#x8981;&#x65F6;&#x5173;&#x95ED;&#x5B83;&#x4EEC;&#xFF0C;&#x5E76;&#x5C06;&#x66F4;&#x65B0;&#x63A8;&#x5E7F;&#x5230;&#x90A3;&#x4E2A;&#x6A21;&#x5757;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</p>
-<p><a href="https://baijiahao.baidu.com/s?id=1606406149473084309&amp;wfr=spider&amp;for=pc" target="_blank">https://baijiahao.baidu.com/s?id=1606406149473084309&amp;wfr=spider&amp;for=pc</a></p>
+<p><br></p>
+<h4 id="from-literal">from-literal</h4>
+<pre><code>[root:etc]$ kubectl create configmap dev-config --from-literal=app.mem=2048m
+configmap/dev-config created
+</code></pre><p><br></p>
+<p>&#x67E5;&#x770B;&#x521B;&#x5EFA;&#x7684;configmap&#xFF1A;</p>
+<pre><code>[root:etc]$ kubectl get configmap dev-config -o yaml
+apiVersion: v1
+data:
+  app.mem: 2048m
+kind: ConfigMap
+metadata:
+  creationTimestamp: &quot;2020-01-26T04:26:10Z&quot;
+  name: dev-config
+  namespace: default
+  resourceVersion: &quot;20135077&quot;
+  selfLink: /api/v1/namespaces/default/configmaps/dev-config
+  uid: fa982d7b-3ff3-11ea-8d48-06a014a4eb80
+</code></pre><p><br></p>
+<h4 id="from-file">from file</h4>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;<code>dev-config</code>&#xFF0C;&#x91CC;&#x9762;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code>app.env=dev
+app.mem=2048m
+app.properties=dev.env.url
+</code></pre><p><br></p>
+<pre><code>[root:pod]$ kubectl create configmap dev-env --from-file=dev-config 
+configmap/dev-env created
+
+[root:pod]$ kubectl get configmap dev-env -o yaml
+apiVersion: v1
+data:
+  dev-config: |-
+    app.env=dev
+    app.mem=2048m
+    app.properties=dev.env.url
+kind: ConfigMap
+metadata:
+  creationTimestamp: &quot;2020-01-26T04:31:43Z&quot;
+  name: dev-env
+  namespace: default
+  resourceVersion: &quot;20135689&quot;
+  selfLink: /api/v1/namespaces/default/configmaps/dev-env
+  uid: c17275e3-3ff4-11ea-8103-02c2b593c912
+</code></pre><p><br></p>
+<h2 id="pod&#x4F7F;&#x7528;configmap">pod&#x4F7F;&#x7528;configmap</h2>
+<p>pod&#x4F7F;&#x7528;<code>ConfigMap</code>&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;&#x4E00;&#x79CD;&#x662F;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x91CC;&#xFF0C;&#x53E6;&#x4E00;&#x79CD;&#x5C06;&#x914D;&#x7F6E;&#x6620;&#x5C04;&#x5230;pod&#x67D0;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p>
+<p><br></p>
+<h4 id="&#x6620;&#x5C04;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;">&#x6620;&#x5C04;&#x5230;&#x73AF;&#x5883;&#x53D8;&#x91CF;</h4>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    envFrom: 
+      - configMapRef:
+            name: app-configmap
+</code></pre>
+<p>&#x521B;&#x5EFA;pod&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x5165;pod&#x67E5;&#x770B;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/3zo6u.png" alt="image-20200316203440074"></p>
+<p><br></p>
+<h4 id="&#x4EE5;&#x6587;&#x4EF6;&#x5F62;&#x5F0F;&#x6620;&#x5C04;&#x5230;pod&#x76EE;&#x5F55;">&#x4EE5;&#x6587;&#x4EF6;&#x5F62;&#x5F0F;&#x6620;&#x5C04;&#x5230;pod&#x76EE;&#x5F55;</h4>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+spec:
+  containers: 
+    - name: test-container
+      image: nginx
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: dev-env
+</code></pre>
+<p><br></p>
+<p>&#x8FDB;&#x5165;pod&#x67E5;&#x770B;&#x6302;&#x8F7D;&#x7684;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-bash">[@root:pod]$ kubectl apply -f configmap-pod.yaml 
+pod/configmap-pod created
+
+[@root:pod]$ kubectl exec -it configmap-pod bash
+root@configmap-pod:/# cd /etc/config
+root@configmap-pod:/etc/config# ls
+dev-config
+root@configmap-pod:/etc/config# cat dev-config 
+app.env=dev
+app.mem=2048m
+app.properties=dev.env.url
+</code></pre>
+<p><br></p>
 
                                 
                                 </section>
@@ -914,14 +990,10 @@
 
             
                 
-                <a href="01.微服务.html" class="navigation navigation-prev " aria-label="Previous page: 什么是微服务">
+                <a href="05.environment.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: k8s environment">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="03.kubernetes核心.html" class="navigation navigation-next " aria-label="Next page: kubernetes核心">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -930,7 +1002,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"什么是云原生","level":"1.2.3","depth":2,"next":{"title":"kubernetes核心","level":"1.2.4","depth":2,"path":"chapter0/03.kubernetes核心.md","ref":"chapter0/03.kubernetes核心.md","articles":[]},"previous":{"title":"什么是微服务","level":"1.2.2","depth":2,"path":"chapter0/01.微服务.md","ref":"chapter0/01.微服务.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter0/02.云原生.md","mtime":"2020-03-05T02:32:27.649Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T12:38:30.098Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ConfigMap","level":"1.4.7","depth":2,"next":{"title":"[Scheduling]","level":"1.5","depth":1,"ref":"","articles":[{"title":"Manual Scheduling","level":"1.5.1","depth":2,"path":"chapter3/00.Manual-scheduling.md","ref":"chapter3/00.Manual-scheduling.md","articles":[]},{"title":"DamemonSets","level":"1.5.2","depth":2,"path":"chapter3/00.DamemonSets.md","ref":"chapter3/00.DamemonSets.md","articles":[]},{"title":"NodeSelector","level":"1.5.3","depth":2,"path":"chapter3/01.NodeSelector.md","ref":"chapter3/01.NodeSelector.md","articles":[]},{"title":"Node Affinity","level":"1.5.4","depth":2,"path":"chapter3/02.node-affinity.md","ref":"chapter3/02.node-affinity.md","articles":[]},{"title":"pod affinity","level":"1.5.5","depth":2,"path":"chapter3/03.pod-affinity.md","ref":"chapter3/03.pod-affinity.md","articles":[]},{"title":"Resource Limits","level":"1.5.6","depth":2,"path":"chapter3/04.resource-limits.md","ref":"chapter3/04.resource-limits.md","articles":[]},{"title":"Static Pods","level":"1.5.7","depth":2,"path":"chapter3/05.static-pods.md","ref":"chapter3/05.static-pods.md","articles":[]},{"title":"Taints and Tolerations","level":"1.5.8","depth":2,"path":"chapter3/06.taints-and-tolerations.md","ref":"chapter3/06.taints-and-tolerations.md","articles":[]}]},"previous":{"title":"k8s environment","level":"1.4.6","depth":2,"path":"chapter2/05.environment.md","ref":"chapter2/05.environment.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/06.configmap.md","mtime":"2020-03-16T12:38:27.431Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T12:38:30.098Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
