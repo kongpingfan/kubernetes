@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>pod · GitBook</title>
+        <title>Schedular · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="03.replicaset.html" />
+    <link rel="next" href="33.api-server.html" />
     
     
-    <link rel="prev" href="34.object.html" />
+    <link rel="prev" href="32.controller-manager.html" />
     
 
     </head>
@@ -239,7 +239,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="32.schedular.html">
+        <li class="chapter active" data-level="1.3.5" data-path="32.schedular.html">
             
                 <a href="32.schedular.html">
             
@@ -278,7 +278,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.8" data-path="02.pod.html">
+        <li class="chapter " data-level="1.3.8" data-path="02.pod.html">
             
                 <a href="02.pod.html">
             
@@ -941,7 +941,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >pod</a>
+        <a href=".." >Schedular</a>
     </h1>
 </div>
 
@@ -956,7 +956,45 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pod">pod</h1>
+                                <h1 id="schedular">Schedular</h1>
+<!-- toc --><div id="toc" class="toc">
+
+<ul>
+<li><a href="#kube-scheduler">kube-scheduler</a></li>
+<li><a href="#scheduling-with-kube-scheduler">Scheduling with kube-scheduler</a></li>
+<li><a href="#&#x8C03;&#x5EA6;&#x793A;&#x4F8B;">&#x8C03;&#x5EA6;&#x793A;&#x4F8B;</a></li>
+</ul>
+
+</div><!-- tocstop -->
+<p>A scheduler watches for newly created Pods that have no Node assigned. For every Pod that the scheduler discovers, the scheduler becomes responsible for finding the best Node for that Pod to run on. </p>
+<p><br></p>
+<h2 id="kube-scheduler">kube-scheduler</h2>
+<p><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/" target="_blank">kube-scheduler</a> is the default scheduler for Kubernetes and runs as part of the <a href="https://kubernetes.io/docs/reference/glossary/?all=true#term-control-plane" target="_blank">control plane</a>. kube-scheduler is designed so that, if you want and need to, you can write your own scheduling component and use that instead.</p>
+<p>For every newly created pod or other unscheduled pods, kube-scheduler selects an optimal node for them to run on. However, every container in pods has different requirements for resources and every pod also has different requirements. Therefore, existing nodes need to be filtered according to the specific scheduling requirements.</p>
+<p>In a cluster, Nodes that meet the scheduling requirements for a Pod are called <em>feasible</em> nodes. If none of the nodes are suitable, the pod remains unscheduled until the scheduler is able to place it.</p>
+<p>The scheduler finds feasible Nodes for a Pod and then runs a set of functions to score the feasible Nodes and picks a Node with the highest score among the feasible ones to run the Pod. The scheduler then notifies the API server about this decision in a process called <em>binding</em>.</p>
+<p>Factors that need taken into account for scheduling decisions include individual and collective resource requirements, hardware / software / policy constraints, affinity and anti-affinity specifications, data locality, inter-workload interference, and so on.</p>
+<p><br></p>
+<h2 id="scheduling-with-kube-scheduler">Scheduling with kube-scheduler</h2>
+<p>kube-scheduler selects a node for the pod in a 2-step operation:</p>
+<ol>
+<li>Filtering</li>
+<li>Scoring</li>
+</ol>
+<p>The <em>filtering</em> step finds the set of Nodes where it&#x2019;s feasible to schedule the Pod. For example, the PodFitsResources filter checks whether a candidate Node has enough available resource to meet a Pod&#x2019;s specific resource requests. After this step, the node list contains any suitable Nodes; often, there will be more than one. If the list is empty, that Pod isn&#x2019;t (yet) schedulable.</p>
+<p>In the <em>scoring</em> step, the scheduler ranks the remaining nodes to choose the most suitable Pod placement. The scheduler assigns a score to each Node that survived filtering, basing this score on the active scoring rules.</p>
+<p>Finally, kube-scheduler assigns the Pod to the Node with the highest ranking. If there is more than one node with equal scores, kube-scheduler selects one of these at random.</p>
+<p><br></p>
+<h2 id="&#x8C03;&#x5EA6;&#x793A;&#x4F8B;">&#x8C03;&#x5EA6;&#x793A;&#x4F8B;</h2>
+<p>&#x4E0B;&#x9762;&#x4EE5;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4F8B;&#x5B50;&#x4ECB;&#x7ECD;&#x8C03;&#x5EA6;&#x7684;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/0e0qw.png" alt="image-20200317113233391"></p>
+<p>&#x6709;&#x4E00;&#x4E2A;&#x65B0;&#x521B;&#x5EFA;&#x7684;pod&#xFF0C;&#x9700;&#x8981;10&#x4E2A;CPU&#x3002;</p>
+<p>&#x56DB;&#x4E2A;&#x8282;&#x70B9;&#x4E2D;&#xFF0C;&#x53EA;&#x6709;&#x7B2C;&#x4E09;&#x4E2A;&#x548C;&#x7B2C;&#x56DB;&#x4E2A;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#xFF0C;&#x6240;&#x4EE5;&#x7B2C;&#x4E00;&#x4E2A;&#x548C;&#x7B2C;&#x4E8C;&#x4E2A;&#x8282;&#x70B9;&#x5C31;&#x88AB;&#x8FC7;&#x6EE4;&#x6389;&#x3002;</p>
+<p><br></p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/ttygr.png" alt="image-20200317113339918"></p>
+<p>&#x8FC7;&#x6EE4;&#x5B8C;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x5C06;pod&#x90E8;&#x7F72;&#x5230;&#x7B2C;&#x4E09;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x5219;&#x7B2C;&#x4E09;&#x4E2A;&#x8282;&#x70B9;&#x5269;&#x4F59;cpu&#x989D;&#x5EA6;&#x4E3A;2.</p>
+<p>&#x5982;&#x679C;&#x5C06;pod&#x90E8;&#x7F72;&#x5230;&#x7B2C;&#x56DB;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x5219;&#x5269;&#x4F59;cpu&#x989D;&#x5EA6;&#x4E3A;6&#x3002;</p>
+<p>&#x6240;&#x4EE5;schedular&#x51B3;&#x5B9A;&#x5C06;pod&#x90E8;&#x7F72;&#x5230;&#x7B2C;&#x56DB;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1;&#x62E5;&#x6709;&#x6700;&#x591A;&#x8D44;&#x6E90;&#x7684;&#x8282;&#x70B9;&#x4F18;&#x5148;&#x90E8;&#x7F72;pod&#x3002;(&#x8FD9;&#x53EA;&#x662F;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x8003;&#x8651;&#x56E0;&#x7D20;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8FD8;&#x6709;&#x5176;&#x4ED6;&#x56E0;&#x7D20;&#xFF09;</p>
 
                                 
                                 </section>
@@ -984,12 +1022,12 @@
 
             
                 
-                <a href="34.object.html" class="navigation navigation-prev " aria-label="Previous page: Object">
+                <a href="32.controller-manager.html" class="navigation navigation-prev " aria-label="Previous page: Controller Manager">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="03.replicaset.html" class="navigation navigation-next " aria-label="Next page: replicaset">
+                <a href="33.api-server.html" class="navigation navigation-next " aria-label="Next page: Api Server">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1000,7 +1038,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"pod","level":"1.3.8","depth":2,"next":{"title":"replicaset","level":"1.3.9","depth":2,"path":"chapter1/03.replicaset.md","ref":"chapter1/03.replicaset.md","articles":[]},"previous":{"title":"Object","level":"1.3.7","depth":2,"path":"chapter1/34.object.md","ref":"chapter1/34.object.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/02.pod.md","mtime":"2020-03-15T08:17:13.892Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-17T03:38:37.186Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Schedular","level":"1.3.5","depth":2,"next":{"title":"Api Server","level":"1.3.6","depth":2,"path":"chapter1/33.api-server.md","ref":"chapter1/33.api-server.md","articles":[]},"previous":{"title":"Controller Manager","level":"1.3.4","depth":2,"path":"chapter1/32.controller-manager.md","ref":"chapter1/32.controller-manager.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/32.schedular.md","mtime":"2020-03-17T03:38:34.151Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-17T03:38:37.186Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
