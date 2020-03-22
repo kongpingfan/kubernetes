@@ -955,6 +955,100 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="label">Label</h1>
+<!-- toc --><div id="toc" class="toc">
+
+<ul>
+<li><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;label">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;label</a></li>
+<li><a href="#&#x8BBE;&#x7F6E;&#x53CA;&#x67E5;&#x8BE2;label">&#x8BBE;&#x7F6E;&#x53CA;&#x67E5;&#x8BE2;label</a><ul>
+<li><a href="#cli&#x8BBE;&#x7F6E;">cli&#x8BBE;&#x7F6E;</a></li>
+<li><a href="#yaml&#x8BBE;&#x7F6E;">yaml&#x8BBE;&#x7F6E;</a></li>
+</ul>
+</li>
+<li><a href="#&#x591A;&#x4E2A;label&#x7684;&#x9009;&#x62E9;">&#x591A;&#x4E2A;label&#x7684;&#x9009;&#x62E9;</a></li>
+</ul>
+
+</div><!-- tocstop -->
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;label">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;label</h2>
+<p>Labels&#x5728;&#x73B0;&#x5B9E;&#x4E2D;&#x53EF;&#x4EE5;&#x5BF9;&#x4E8B;&#x7269;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x3002;&#x4F8B;&#x5982;&#x52A8;&#x7269;&#x7684;&#x5206;&#x7C7B;&#x662F;&#x732B;&#x3001;&#x72D7;&#xFF1B;&#x989C;&#x8272;&#x662F;&#x7EFF;&#x8272;&#x6216;&#x7EA2;&#x8272;&#x3002;</p>
+<p>Selectors&#x4E3A;&#x4E86;&#x9009;&#x62E9;&#x51FA;&#x7279;&#x5B9A;&#x7684;Label&#xFF0C;&#x4F8B;&#x5982;&#x6307;&#x5B9A;<code>&#x4E00;&#x53EA;&#x7EFF;&#x8272;&#x7684;&#x732B;</code>&#xFF0C;&#x5C31;&#x80FD;&#x786E;&#x5B9A;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;&#x52A8;&#x7269;&#x3002;</p>
+<hr>
+<p>&#x5728;k8s&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5404;&#x79CD;Pods&#x6253;&#x6807;&#x7B7E;&#xFF1A;</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNc79gy1g4h665k1h3j31yr0u0apc.jpg" alt="image-20190628210200035">
+K8S&#x91CC;&#x7684;label&#x548C;aws&#x7684;label&#x5728;&#x5F62;&#x5F0F;&#x4E0A;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#xFF0C;&#x4EE5;<code>key:value</code>&#x8FD9;&#x79CD;&#x5F62;&#x5F0F;&#x5B58;&#x5728;&#x3002;&#x4E00;&#x822C;&#x7528;&#x4E8E;<code>deployment</code>&#x548C;<code>service</code></p>
+<p><br></p>
+<h2 id="&#x8BBE;&#x7F6E;&#x53CA;&#x67E5;&#x8BE2;label">&#x8BBE;&#x7F6E;&#x53CA;&#x67E5;&#x8BE2;label</h2>
+<p>&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;&#x7528;<code>cli</code>&#x8BBE;&#x7F6E;label&#x3001;&#x5728;yaml&#x91CC;&#x8BBE;&#x7F6E;label&#x3002;</p>
+<h4 id="cli&#x8BBE;&#x7F6E;">cli&#x8BBE;&#x7F6E;</h4>
+<p>&#x5148;&#x521B;&#x5EFA;&#x4E24;&#x4E2A;pod&#xFF1A;</p>
+<pre><code>kubectl run nginx --image=nginx
+kubectl run nginx2 --image=nginx
+</code></pre><p>&#x8BBE;&#x7F6E;label&#xFF1A;</p>
+<pre><code>kubectl label pod nginx-7cdbd8cdc9-hh8ks env=prod
+kubectl label pod nginx2-dbf77bdb7-6j8ts env=dev
+</code></pre><p>&#x6839;&#x636E;label&#x67E5;&#x8BE2;&#xFF1A;</p>
+<pre><code>[@root:kubernetes]$ kubectl get pod -l env=dev
+NAME READY STATUS RESTARTS AGE
+nginx2-dbf77bdb7-6j8ts 1/1 Running 0 67m
+
+# &#x53EF;&#x4EE5;&#x7528;&#xFF01;=&#x67E5;&#x8BE2;
+[@root:kubernetes]$ kubectl get pod -l env!=dev
+NAME READY STATUS RESTARTS AGE
+frontend-74b4665db5-crvbg 1/1 Running 0 127d
+frontend-74b4665db5-lwzxn 1/1 Running 0 127d
+frontend-74b4665db5-v9s7j 1/1 Running 0 127d
+frontend-74b4665db5-xmrwh 1/1 Running 0 127d
+mycontainer 1/1 Running 0 13h
+nginx-7cdbd8cdc9-hh8ks 1/1 Running 0 69m
+redis-master-6fbbc44567-jj8kt 1/1 Running 0 127d
+redis-slave-74ccb764fc-j8vsx 1/1 Running 0 127d
+redis-slave-74ccb764fc-vljl6 1/1 Running 0 127d
+</code></pre><p><br></p>
+<h4 id="yaml&#x8BBE;&#x7F6E;">yaml&#x8BBE;&#x7F6E;</h4>
+<p>&#x4F7F;&#x7528;<code>metadata.labels</code>&#x8BBE;&#x7F6E;&#x6807;&#x7B7E;&#xFF1A;</p>
+<pre><code class="lang-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: mycontainer
+  labels:
+    env: &quot;prod&quot;
+    owner: kongpingfan
+spec:
+  containers:
+    - image: &quot;mykplabs/kubernetes:nginx&quot;
+      name: &quot;nginxxx&quot;
+</code></pre>
+<p><br></p>
+<pre><code>[@root:pod]$ kubectl get pods -l env=prod
+NAME READY STATUS RESTARTS AGE
+mycontainer 1/1 Running 0 13h
+nginx-7cdbd8cdc9-hh8ks 1/1 Running 0 72m
+</code></pre><p><br></p>
+<p>&#x9664;&#x4E86;<code>-l</code>&#x5916;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>--selector</code>&#x53C2;&#x6570;&#x9009;&#x62E9;&#x51FA;&#x7279;&#x5B9A;&#x7684;pods&#xFF1A;</p>
+<pre><code class="lang-bash">kubectl get pods --selector app=web-01
+</code></pre>
+<p><br></p>
+<p>&#x5982;&#x679C;&#x60F3;&#x83B7;&#x53D6;&#x5177;&#x6709;&#x67D0;&#x4E2A;&#x6807;&#x7B7E;&#x7684;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1A;<code>kubectl get all --selector xxx=xxxxx</code></p>
+<pre><code class="lang-bash">master $ kubectl get all --selector env=prod
+NAME READY STATUS RESTARTS AGE
+pod/app-1-zzxdf 1/1 Running 0 4m
+pod/app-2-xhkbg 1/1 Running 0 4m
+pod/auth 1/1 Running 0 4m
+pod/db-2-jz2xk 1/1 Running 0 4m
+
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+service/app-1 ClusterIP 10.105.247.17 &lt;none&gt; 3306/TCP 4m
+
+NAME DESIRED CURRENT READY AGE
+replicaset.apps/app-2 1 1 1 4m
+replicaset.apps/db-2 1 1 1 4m
+</code></pre>
+<p><br></p>
+<h2 id="&#x591A;&#x4E2A;label&#x7684;&#x9009;&#x62E9;">&#x591A;&#x4E2A;label&#x7684;&#x9009;&#x62E9;</h2>
+<p>&#x8D44;&#x6E90;&#x53EF;&#x80FD;&#x5177;&#x6709;&#x591A;&#x4E2A;label&#xFF0C;&#x4E00;&#x6B21;&#x67E5;&#x8BE2;&#x591A;&#x4E2A;label&#x65F6;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<pre><code>kubectl get all --selector env=prod,bu=finance,tier=frontend
+</code></pre><p>&#x6216;&#xFF1A;</p>
+<pre><code class="lang-bash">kubectl get pods --selector env=prod --selector bu=finance --selector tier=frontend
+</code></pre>
 
                                 
                                 </section>
@@ -994,7 +1088,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Label","level":"2.1.1","depth":2,"next":{"title":"liveness probe","level":"2.1.2","depth":2,"path":"chapter2/01.liveness-probe.md","ref":"chapter2/01.liveness-probe.md","articles":[]},"previous":{"title":"[Application LifeCycle Management]","level":"2.1","depth":1,"ref":"","articles":[{"title":"Label","level":"2.1.1","depth":2,"path":"chapter2/00.label.md","ref":"chapter2/00.label.md","articles":[]},{"title":"liveness probe","level":"2.1.2","depth":2,"path":"chapter2/01.liveness-probe.md","ref":"chapter2/01.liveness-probe.md","articles":[]},{"title":"readiness probe","level":"2.1.3","depth":2,"path":"chapter2/02.readiness-Probe.md","ref":"chapter2/02.readiness-Probe.md","articles":[]},{"title":"job&&cronjob","level":"2.1.4","depth":2,"path":"chapter2/03.job-and-cronjob.md","ref":"chapter2/03.job-and-cronjob.md","articles":[]},{"title":"command&args","level":"2.1.5","depth":2,"path":"chapter2/04.command-and-args.md","ref":"chapter2/04.command-and-args.md","articles":[]},{"title":"k8s environment","level":"2.1.6","depth":2,"path":"chapter2/05.environment.md","ref":"chapter2/05.environment.md","articles":[]},{"title":"ConfigMap","level":"2.1.7","depth":2,"path":"chapter2/06.configmap.md","ref":"chapter2/06.configmap.md","articles":[]},{"title":"Secret","level":"2.1.8","depth":2,"path":"chapter2/07.secret.md","ref":"chapter2/07.secret.md","articles":[]},{"title":"Multi-containers Pod","level":"2.1.9","depth":2,"path":"chapter2/08.multiple-container-pod.md","ref":"chapter2/08.multiple-container-pod.md","articles":[]},{"title":"Multi-containers Pod Design Pattern","level":"2.1.10","depth":2,"path":"chapter2/09.multi-containers-pod-design-patterns.md","ref":"chapter2/09.multi-containers-pod-design-patterns.md","articles":[]},{"title":"initContainers","level":"2.1.11","depth":2,"path":"chapter2/10.init-containers.md","ref":"chapter2/10.init-containers.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/00.label.md","mtime":"2020-03-16T10:29:15.603Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-17T03:38:37.186Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Label","level":"2.1.1","depth":2,"next":{"title":"liveness probe","level":"2.1.2","depth":2,"path":"chapter2/01.liveness-probe.md","ref":"chapter2/01.liveness-probe.md","articles":[]},"previous":{"title":"[Application LifeCycle Management]","level":"2.1","depth":1,"ref":"","articles":[{"title":"Label","level":"2.1.1","depth":2,"path":"chapter2/00.label.md","ref":"chapter2/00.label.md","articles":[]},{"title":"liveness probe","level":"2.1.2","depth":2,"path":"chapter2/01.liveness-probe.md","ref":"chapter2/01.liveness-probe.md","articles":[]},{"title":"readiness probe","level":"2.1.3","depth":2,"path":"chapter2/02.readiness-Probe.md","ref":"chapter2/02.readiness-Probe.md","articles":[]},{"title":"job&&cronjob","level":"2.1.4","depth":2,"path":"chapter2/03.job-and-cronjob.md","ref":"chapter2/03.job-and-cronjob.md","articles":[]},{"title":"command&args","level":"2.1.5","depth":2,"path":"chapter2/04.command-and-args.md","ref":"chapter2/04.command-and-args.md","articles":[]},{"title":"k8s environment","level":"2.1.6","depth":2,"path":"chapter2/05.environment.md","ref":"chapter2/05.environment.md","articles":[]},{"title":"ConfigMap","level":"2.1.7","depth":2,"path":"chapter2/06.configmap.md","ref":"chapter2/06.configmap.md","articles":[]},{"title":"Secret","level":"2.1.8","depth":2,"path":"chapter2/07.secret.md","ref":"chapter2/07.secret.md","articles":[]},{"title":"Multi-containers Pod","level":"2.1.9","depth":2,"path":"chapter2/08.multiple-container-pod.md","ref":"chapter2/08.multiple-container-pod.md","articles":[]},{"title":"Multi-containers Pod Design Pattern","level":"2.1.10","depth":2,"path":"chapter2/09.multi-containers-pod-design-patterns.md","ref":"chapter2/09.multi-containers-pod-design-patterns.md","articles":[]},{"title":"initContainers","level":"2.1.11","depth":2,"path":"chapter2/10.init-containers.md","ref":"chapter2/10.init-containers.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/00.label.md","mtime":"2020-03-22T06:09:17.129Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T06:09:26.900Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
