@@ -963,12 +963,14 @@
 <li><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;replicaset">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;replicaset</a></li>
 <li><a href="#replicaset">ReplicaSet</a></li>
 <li><a href="#&#x6269;&#x5C55;replica&#x6570;&#x91CF;">&#x6269;&#x5C55;replica&#x6570;&#x91CF;</a></li>
+<li><a href="#&#x7F16;&#x5199;pod-yaml&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x7F16;&#x5199;pod yaml&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</a></li>
 </ul>
 
 </div><!-- tocstop -->
 <h2 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;replicaset">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;replicaset</h2>
-<p>&#x5355;&#x4E2A;pod&#x6709;&#x53EF;&#x80FD;&#x7531;&#x4E8E;&#x5404;&#x79CD;&#x539F;&#x56E0;&#x6302;&#x6389;&#xFF0C;&#x6B64;&#x65F6;&#x4F1A;&#x5F71;&#x54CD;&#x7EBF;&#x4E0A;&#x670D;&#x52A1;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x591A;&#x4E2A;worker node&#x4E0A;&#x6709;&#x591A;&#x4E2A;pod&#x540C;&#x65F6;&#x8FD0;&#x884C;&#xFF0C;&#x8FD9;&#x79CD;&#x673A;&#x7387;&#x5C31;&#x4F1A;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x3002;</p>
+<p>&#x5355;&#x4E2A;pod&#x6709;&#x53EF;&#x80FD;&#x7531;&#x4E8E;&#x5404;&#x79CD;&#x539F;&#x56E0;&#x6302;&#x6389;&#xFF0C;&#x4F8B;&#x5982;&#x5355;&#x70B9;&#x6545;&#x969C;&#x3001;&#x53D7;&#x5176;&#x4ED6;&#x5360;&#x7528;&#x8D44;&#x6E90;&#x8FC7;&#x9AD8;&#x7684;pod&#x5F71;&#x54CD;&#x7B49;&#xFF0C;&#x6B64;&#x65F6;&#x4F1A;&#x5F71;&#x54CD;&#x7EBF;&#x4E0A;&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5728;&#x591A;&#x4E2A;worker node&#x4E0A;&#x6709;&#x591A;&#x4E2A;pod&#x540C;&#x65F6;&#x8FD0;&#x884C;&#xFF0C;&#x8FD9;&#x79CD;&#x673A;&#x7387;&#x5C31;&#x4F1A;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x3002;</p>
+<p><br></p>
 <p>&#x6240;&#x4EE5;&#xFF0C;replicaset&#x6709;&#x4E24;&#x4E2A;&#x4F5C;&#x7528;&#xFF1A;</p>
 <ul>
 <li>&#x4FDD;&#x8BC1;&#x9AD8;HA</li>
@@ -1011,6 +1013,35 @@ kubectl get replicaset
 <p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;&#x5C06;yaml&#x4E2D;&#x7684;replicas&#x66F4;&#x6539;&#x4E3A;6&#xFF0C;&#x7136;&#x540E;<code>kubectl apply -f xxx.yaml</code></p>
 <p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;</p>
 <pre><code>kubectl scale replicaset --replicas=6 ${replica_name}
+</code></pre><p><br></p>
+<h2 id="&#x7F16;&#x5199;pod-yaml&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x7F16;&#x5199;pod yaml&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h2>
+<p>&#x7F16;&#x5199;<code>Pod</code>&#x7684;yaml&#x65F6;&#xFF0C;apiVersion&#x4E3A;v1, &#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x91CC;&#x662F;<code>apps/v1</code>&#x5462;&#xFF1F;</p>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;<code>replicaset</code>&#x5B9A;&#x4E49;&#x5728;<code>apis/apps/v1</code>&#x76EE;&#x5F55;&#x4E0B;&#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-19-033543.png" alt="image-20200119113543083"></p>
+<p>&#x800C;pod&#x5B9A;&#x4E49;&#x5728;<code>api/v1</code>&#x76EE;&#x5F55;&#x4E0B;&#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-19-033657.png" alt="image-20200119113656809"></p>
+<p>&#x5982;&#x679C;&#x5C06;apiVersion&#x6539;&#x6210;v1, &#x5219;&#x62A5;&#x9519;&#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-19-033826.png" alt="image-20200119113826402"></p>
+<p><br></p>
+<p><br></p>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x5982;&#x679C;<code>selector</code>&#x90E8;&#x5206;&#x7684;label&#x548C;<code>template</code>&#x7684;label&#x4E0D;&#x7EDF;&#x4E00;&#xFF0C;&#x4E5F;&#x4F1A;&#x62A5;&#x9519;&#xFF1A;</p>
+<pre><code class="lang-yaml">spec:
+  # modify replicas according to your case
+  replicas: 5
+  selector:
+    matchLabels:
+      tier: frontend-end
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google_samples/gb-frontend:v3
+</code></pre>
+<pre><code>[@root:pod]$ kubectl apply -f 5.yaml 
+The ReplicaSet &quot;frontend&quot; is invalid: spec.template.metadata.labels: Invalid value: map[string]string{&quot;tier&quot;:&quot;frontend&quot;}: `selector` does not match template `labels`
 </code></pre>
                                 
                                 </section>
@@ -1054,7 +1085,7 @@ kubectl get replicaset
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"replicaset","level":"1.3.9","depth":2,"next":{"title":"deployment","level":"1.3.10","depth":2,"path":"chapter1/04.deployment.md","ref":"chapter1/04.deployment.md","articles":[]},"previous":{"title":"pod","level":"1.3.8","depth":2,"path":"chapter1/02.pod.md","ref":"chapter1/02.pod.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/03.replicaset.md","mtime":"2020-03-15T12:42:13.418Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T06:09:26.900Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"replicaset","level":"1.3.9","depth":2,"next":{"title":"deployment","level":"1.3.10","depth":2,"path":"chapter1/04.deployment.md","ref":"chapter1/04.deployment.md","articles":[]},"previous":{"title":"pod","level":"1.3.8","depth":2,"path":"chapter1/02.pod.md","ref":"chapter1/02.pod.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/03.replicaset.md","mtime":"2020-03-22T06:15:26.425Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T06:15:29.059Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
