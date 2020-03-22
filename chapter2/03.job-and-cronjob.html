@@ -957,6 +957,78 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="jobcronjob">job&amp;&amp;cronjob</h1>
+<!-- toc --><div id="toc" class="toc">
+
+<ul>
+<li><a href="#job">Job</a></li>
+<li><a href="#job&#x7EC3;&#x4E60;">job&#x7EC3;&#x4E60;</a></li>
+<li><a href="#&#x4E00;&#x4E9B;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x70B9;">&#x4E00;&#x4E9B;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x70B9;</a><ul>
+<li><a href="#restartpolicy">restartPolicy</a></li>
+<li><a href="#completions">Completions</a></li>
+<li><a href="#parallelism">Parallelism</a></li>
+</ul>
+</li>
+</ul>
+
+</div><!-- tocstop -->
+<h2 id="job">Job</h2>
+<p>Job is responsible for creating one or more pods to run the instruction which have been specified.</p>
+<p>&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#xFF1A;</p>
+<p><code>Run to Completion</code> , <code>Cronjob</code></p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-19-125420.png" alt="image-20200119205419529"></p>
+<ul>
+<li>Once task is completed, the pods are not terminated.</li>
+<li>It is upto user to delete old jobs after taking note of the status.</li>
+<li>When you delete the job, all the pods associated with the job will be deleted.</li>
+</ul>
+<p><br></p>
+<p>In a multiple worker node cluster, if one node fails where job is running, that job will be start the pod in the avaliable node.</p>
+<p><br></p>
+<h2 id="job&#x7EC3;&#x4E60;">job&#x7EC3;&#x4E60;</h2>
+<p>job&#x5C5E;&#x4E8E;<code>apis/batch/v1</code> &#xFF1A;</p>
+<p><img src="https://pingfan.s3.amazonaws.com/blog/2020-01-19-134155.png" alt="image-20200119214155173"></p>
+<p>yaml&#x6587;&#x4EF6;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-yaml">apiVersion: batch/v1
+kind: Job
+metadata: 
+  name: job1
+spec:
+  template:
+    spec:
+      containers:
+        - name: pod1
+          image: busybox
+          command: [&quot;/bin/sh&quot;]
+          args: [&quot;-c&quot;, &quot;echo Hello world&quot;]
+      restartPolicy: Never
+</code></pre>
+<p><br></p>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/wndxg.png" alt="image-20200322191453981"></p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/yo6cc.png" alt="image-20200322191524106"></p>
+<p><br></p>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>kubectl logs</code>&#x67E5;&#x770B;pod&#x7684;&#x65E5;&#x5FD7;&#xFF1A;</p>
+<pre><code class="lang-bash">[@root:pod]$ kubectl logs job1-klf4p
+Hello world
+</code></pre>
+<p><br></p>
+<p>&#x5982;&#x679C;&#x5220;&#x9664;job&#xFF0C;pod&#x4F1A;&#x4E00;&#x8D77;&#x8DDF;&#x7740;&#x5220;&#x9664;&#x3002;</p>
+<pre><code>kubectl delete job job1
+</code></pre><p><br></p>
+<p><br></p>
+<h2 id="&#x4E00;&#x4E9B;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x70B9;">&#x4E00;&#x4E9B;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x70B9;</h2>
+<h4 id="restartpolicy">restartPolicy</h4>
+<p>job&#x7684;<code>pod</code>&#x5B9A;&#x4E49;&#x4E2D;&#xFF0C;<code>restartPolicy</code>&#x4E00;&#x5B9A;&#x8981;&#x4E3A;<code>Never</code>&#x6216;<code>OnFailure</code>&#x3002;pod&#x9ED8;&#x8BA4;&#x7684;restartPolicy&#x4E3A;Always&#xFF0C;&#x5982;&#x679C;job&#x4E5F;&#x91C7;&#x7528;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#xFF0C;&#x5F53;&#x68C0;&#x6D4B;&#x5230;pod&#x72B6;&#x6001;&#x4E0D;&#x4E3A;<code>running</code>&#x65F6;&#xFF0C;&#x4F1A;&#x4E00;&#x76F4;&#x542F;&#x52A8;pod&#x3002;</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/q1xjc.png" alt="image-20200322183948627"></p>
+<h4 id="completions">Completions</h4>
+<p>When a specified number of successful completions is reached, the task (ie, Job) is complete. </p>
+<p>To run multiple pods, we set a value for completions under the job specification. And we set it to 3 to run 3 PODs. This time, when we create the job, We see the Desired count is 3, and the successful count is 0. Now, by default, the PODs are created one after the other. The second pod is created only after the first is finished.</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/diu83.png" alt="image-20200322192131591"></p>
+<p>That was straight forward. But what if the pods fail? For example, I am now going to create a job using a different image called random-error. It&#x2019;s a simple docker image that randomly completes or fails. When I create this job, first pod completes successfully, the second one fails, so a third one is created and that completes successfully and the fourth one fails, and so does the fifth one and so to have 3 completions, the job creates a new pod which happen to complete successfully. And that completes the job.</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/fg119.png" alt="image-20200322192256457"></p>
+<h4 id="parallelism">Parallelism</h4>
+<p>Instead of getting the pods created sequentially we can get them created in parallel. For this add a property called parallelism to the job specification. We set it to 3 to create 3 pods in parallel. So the job first creates 3 pods at once. Two of which completes successfully. So we only need one more, so it&#x2019;s intelligent enough to create one pod at a time until we get a total of 3 completed pods.</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/n1vi8.png" alt="image-20200322192319665"></p>
 
                                 
                                 </section>
@@ -1000,7 +1072,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"job&&cronjob","level":"2.1.4","depth":2,"next":{"title":"command&args","level":"2.1.5","depth":2,"path":"chapter2/04.command-and-args.md","ref":"chapter2/04.command-and-args.md","articles":[]},"previous":{"title":"readiness probe","level":"2.1.3","depth":2,"path":"chapter2/02.readiness-Probe.md","ref":"chapter2/02.readiness-Probe.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/03.job-and-cronjob.md","mtime":"2020-03-16T10:29:15.607Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T07:53:06.103Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"job&&cronjob","level":"2.1.4","depth":2,"next":{"title":"command&args","level":"2.1.5","depth":2,"path":"chapter2/04.command-and-args.md","ref":"chapter2/04.command-and-args.md","articles":[]},"previous":{"title":"readiness probe","level":"2.1.3","depth":2,"path":"chapter2/02.readiness-Probe.md","ref":"chapter2/02.readiness-Probe.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/03.job-and-cronjob.md","mtime":"2020-03-22T11:27:00.020Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T11:27:09.816Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
