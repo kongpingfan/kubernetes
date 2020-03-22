@@ -957,12 +957,53 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="multi-containers-pod-design-pattern">Multi-containers Pod Design Pattern</h1>
+<!-- toc --><div id="toc" class="toc">
+
+<ul>
+<li><a href="#multi-container-pods-design-patterns">Multi-container PODs Design Patterns</a></li>
+<li><a href="#sidecar-design-pattern">Sidecar design pattern</a></li>
+<li><a href="#ambassadorproxy-pattern">Ambassador/Proxy pattern</a></li>
+<li><a href="#adapter-pattern">Adapter pattern</a></li>
+</ul>
+
+</div><!-- tocstop -->
+<p>&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x9605;&#x8BFB;&#xFF1A;<a href="https://www.weave.works/blog/container-design-patterns-for-kubernetes/" target="_blank">https://www.weave.works/blog/container-design-patterns-for-kubernetes/</a></p>
+<h2 id="multi-container-pods-design-patterns">Multi-container PODs Design Patterns</h2>
 <p>There are 3 common patterns, when it comes to designing multi-container PODs. The first and what we just saw with the logging service example is known as a <strong>side car</strong> pattern. The others are the <strong>adapter</strong> and the <strong>ambassador</strong> pattern.</p>
 <p><br></p>
-<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/xbnc3.png" alt="img"></p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/5l0ld.png" alt="img"></p>
 <p><br></p>
-<p>sidecar design pattern:</p>
-<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/7dcnt.png" alt="image-20200316222728544"></p>
+<h2 id="sidecar-design-pattern">Sidecar design pattern</h2>
+<p>The sidecar container extends and works with the primary container. This pattern is best used when there is a clear difference between a primary container and any secondary tasks that need to be done for it.</p>
+<p>For example, a web server container (a primary application) that needs to have its logs parsed and forwarded to log storage (a secondary task) may use a sidecar container that takes care of the log forwarding. This same sidecar container can also be used in other places in the stack to forward logs for other web servers or even other applications.</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/b1tlz.png" alt="sidecar-pattern.png"></p>
+<p>(An example of a sidecar container augmenting an application with log saving. <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45406.pdf" target="_blank">Link</a> )</p>
+<p><br></p>
+<blockquote>
+<p>  sidecar design pattern&#x5E38;&#x7528;&#x4E8E;&#x6536;&#x96C6;pod&#x65E5;&#x5FD7;&#xFF1A;</p>
+</blockquote>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/u8n4j.png" alt="image-20200316222728544"></p>
+<p><br></p>
+<h2 id="ambassadorproxy-pattern">Ambassador/Proxy pattern</h2>
+<p>The ambassador pattern is another way to run additional services together with your main application container but it does so through a proxy. The primary goal of an ambassador container is to simplify the access of external services for the main application where the ambassador container acts as a service discovery layer. All configuration for the external service lives within the ambassador container with the main application using the service on localhost. The ambassador container takes care of connecting to a service to keeping the connection open, re-connecting when something unexpected happens, and updating the configuration.</p>
+<p>With this pattern developers only need to think about their app connecting to a single server on the localhost. This pattern is unique to containers since all Pods running on the same machine will share the localhost network interface.</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/9b13b.png" alt="ambassador-pattern.png"></p>
+<p>(An example of the ambassador pattern applied to proxying to different memcache shards. <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45406.pdf" target="_blank">Link</a>)</p>
+<p><br></p>
+<blockquote>
+<p>  So your application communicates to different database instances at different stages of development. A local database for development, one for testing and another for production. You must ensure to modify this connectivity depending on the environment you are deploying your application to:</p>
+</blockquote>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/htfm9.png" alt="image-20200322205736677"></p>
+<p><br></p>
+<h2 id="adapter-pattern">Adapter pattern</h2>
+<p>The adapter container pattern generally transforms the output of the primary container into the output that fits the standards across your applications. For example, an adapter container could expose a standardized monitoring interface to your application even though the application does not implement it in a standard way. The adapter container takes care of converting the output into what is acceptable at the cluster level.</p>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/ity3g.png" alt="adaptor-pattern.png"></p>
+<p>(An example of the adapter pattern applied to normalizing the monitoring interface. <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45406.pdf" target="_blank">Link</a> )</p>
+<p><br></p>
+<blockquote>
+<p>  Before sending the logs to the central server, we would like to convert the logs to a common format. For this we deploy an adapter container. The adapter container processes the logs, before sending it to the central server.</p>
+</blockquote>
+<p><img src="https://pingfan.s3-us-west-2.amazonaws.com/pic/vk3qa.png" alt="image-20200322205917388"></p>
 
                                 
                                 </section>
@@ -1006,7 +1047,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Multi-containers Pod Design Pattern","level":"2.1.10","depth":2,"next":{"title":"initContainers","level":"2.1.11","depth":2,"path":"chapter2/10.init-containers.md","ref":"chapter2/10.init-containers.md","articles":[]},"previous":{"title":"Multi-containers Pod","level":"2.1.9","depth":2,"path":"chapter2/08.multiple-container-pod.md","ref":"chapter2/08.multiple-container-pod.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/09.multi-containers-pod-design-patterns.md","mtime":"2020-03-16T14:43:21.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T11:27:09.816Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Multi-containers Pod Design Pattern","level":"2.1.10","depth":2,"next":{"title":"initContainers","level":"2.1.11","depth":2,"path":"chapter2/10.init-containers.md","ref":"chapter2/10.init-containers.md","articles":[]},"previous":{"title":"Multi-containers Pod","level":"2.1.9","depth":2,"path":"chapter2/08.multiple-container-pod.md","ref":"chapter2/08.multiple-container-pod.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["etoc","-highlight"],"pluginsConfig":{"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/09.multi-containers-pod-design-patterns.md","mtime":"2020-03-22T13:00:25.248Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T13:00:29.373Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
